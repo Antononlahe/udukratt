@@ -1,0 +1,168 @@
+[
+ {
+  "text": "Isikukood 38001085718, tel +372 5555 5555.",
+  "spans": [
+   [
+    10,
+    21,
+    "ISIKUKOOD"
+   ]
+  ],
+  "masked": "Isikukood [ISIKUKOOD], tel +372 5555 5555."
+ },
+ {
+  "text": "IK 380 0108 5718 tel 5123 4567",
+  "spans": [
+   [
+    3,
+    16,
+    "ISIKUKOOD"
+   ]
+  ],
+  "masked": "IK [ISIKUKOOD] tel 5123 4567"
+ },
+ {
+  "text": "38001085718 51234567",
+  "spans": [
+   [
+    0,
+    11,
+    "ISIKUKOOD"
+   ]
+  ],
+  "masked": "[ISIKUKOOD] 51234567"
+ },
+ {
+  "text": "vale kood 38001085719 ja tellimus 380010857189",
+  "spans": [],
+  "masked": "vale kood 38001085719 ja tellimus 380010857189"
+ },
+ {
+  "text": "arve EE38 2200 2210 2014 5685 ja summa 500 EUR",
+  "spans": [
+   [
+    5,
+    29,
+    "BANK_ACCOUNT"
+   ]
+  ],
+  "masked": "arve [BANK_ACCOUNT] ja summa 500 EUR"
+ },
+ {
+  "text": "konto ee382200221020145685.",
+  "spans": [
+   [
+    6,
+    26,
+    "BANK_ACCOUNT"
+   ]
+  ],
+  "masked": "konto [BANK_ACCOUNT]."
+ },
+ {
+  "text": "IBAN DE89 3704 0044 0532 0130 00 palun",
+  "spans": [
+   [
+    5,
+    32,
+    "BANK_ACCOUNT"
+   ]
+  ],
+  "masked": "IBAN [BANK_ACCOUNT] palun"
+ },
+ {
+  "text": "kaart 4111 1111 1111 1111, mail jaan.tamm@eesti.ee ip 10.0.0.1",
+  "spans": [
+   [
+    6,
+    25,
+    "CREDIT_CARD"
+   ],
+   [
+    32,
+    50,
+    "EMAIL"
+   ],
+   [
+    54,
+    62,
+    "IP_ADDRESS"
+   ]
+  ],
+  "masked": "kaart [CREDIT_CARD], mail [EMAIL] ip [IP_ADDRESS]"
+ },
+ {
+  "text": "server 2001:db8::1 ja mac 00:1A:2B:3C:4D:5E",
+  "spans": [
+   [
+    7,
+    18,
+    "IP_ADDRESS"
+   ],
+   [
+    26,
+    43,
+    "IP_ADDRESS"
+   ]
+  ],
+  "masked": "server [IP_ADDRESS] ja mac [IP_ADDRESS]"
+ },
+ {
+  "text": "vt https://www.eesti.ee/et/toetused ja www.tootukassa.ee",
+  "spans": [
+   [
+    3,
+    35,
+    "URL"
+   ],
+   [
+    39,
+    56,
+    "URL"
+   ]
+  ],
+  "masked": "vt [URL] ja [URL]"
+ },
+ {
+  "text": "Меня зовут Елена Смирнова, личный код 49403136526.",
+  "spans": [
+   [
+    38,
+    49,
+    "ISIKUKOOD"
+   ]
+  ],
+  "masked": "Menja zovut Jelena Smirnova, litšnõi kod [ISIKUKOOD]."
+ },
+ {
+  "text": "Сергей Йошкин живёт в Нарве, улица Юрия Щербакова 5",
+  "spans": [],
+  "masked": "Sergei Joškin živjot v Narve, ulitsa Jurija Štšerbakova 5"
+ },
+ {
+  "text": "Мägi ja Тамм kirjutasid",
+  "spans": [],
+  "masked": "Mägi ja Tamm kirjutasid"
+ },
+ {
+  "text": "summa 1250,50 eurot, § 32 lg 1, asi nr 3-21-1234",
+  "spans": [],
+  "masked": "summa 1250,50 eurot, § 32 lg 1, asi nr 3-21-1234"
+ },
+ {
+  "text": "Ярослав Ільченко, тел 53 456 789",
+  "spans": [],
+  "masked": "Jaroslav Iltšenko, tel 53 456 789"
+ },
+ {
+  "text": "kood 6 0108 1503 18 ja telefon 5 123 4567",
+  "spans": [
+   [
+    5,
+    19,
+    "ISIKUKOOD"
+   ]
+  ],
+  "masked": "kood [ISIKUKOOD] ja telefon 5 123 4567"
+ }
+]

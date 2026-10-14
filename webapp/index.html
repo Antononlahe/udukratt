@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="et">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Udukratt: Estonian PII redactor demo</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <h1>Udukratt</h1>
+  <p class="sub">Estonian PII redaction in your browser: a checksum rule layer plus a 10 MB MiniLM model.</p>
+  <p class="local">🔒 Everything runs locally. Your text never leaves this browser, there is no server.</p>
+  <div class="examples" id="examples"></div>
+  <textarea id="input" rows="7" spellcheck="false"></textarea>
+  <div class="bar"><button id="go" disabled>Loading model…</button><span id="status"></span></div>
+  <section id="results" hidden>
+    <h2>Detected</h2>
+    <div id="highlight" class="box"></div>
+    <div id="legend" class="legend"></div>
+    <h2>Redacted</h2>
+    <div id="masked" class="box mono"></div>
+  </section>
+  <footer>Experimental research model trained on synthetic and public data. It misses some names, especially in news-style prose and non-Latin scripts. Do not rely on it for real redaction.</footer>
+</main>
+<script type="module" src="app.js"></script>
+</body>
+</html>

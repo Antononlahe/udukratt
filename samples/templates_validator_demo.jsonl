@@ -1,0 +1,9 @@
+{"lang":"et","scenario":"töötuskindlustus","text":"tere, olen {p1} ja jäin eile töötuks. kas {agency} maksab hüvitist kui elan {city:in}? helistage {phone}"}
+{"lang":"et","text":"Minu nimi on Jaan Tamm, palun helistage {phone}"}
+{"lang":"et","text":"Saatke paber {p1:all} aadressile {addr}, tel 5123 4567"}
+{"lang":"ru","text":"Меня зовут {p1:all}, личный код {ik1}"}
+{"lang":"et_public","text":"Mis kell on {agency} {city:in} avatud?"}
+{"lang":"en","text":"Hi it's {p2.g}, my mum {p2.x} needs help"}
+{"lang":"et","text":"tere, olen {p1} ja jäin eile töötuks. kas {agency} maksab hüvitist kui elan {city:in}? helistage {phone}"}
+{"lang":"mixed","text":"Здравствуйте, olen {p1.s:g} tütar, e-post {email}"}
+not json

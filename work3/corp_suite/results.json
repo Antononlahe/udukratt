@@ -1,0 +1,288 @@
+{
+ "formats": {
+  "openapi_yaml": {
+   "docs": 22,
+   "avg_chars": 777,
+   "n": 264,
+   "full": 68.2,
+   "partial": 7.6,
+   "miss": 24.2,
+   "fa_per_doc": 2.27
+  },
+  "openapi_json": {
+   "docs": 22,
+   "avg_chars": 537,
+   "n": 234,
+   "full": 98.7,
+   "partial": 0.4,
+   "miss": 0.9,
+   "fa_per_doc": 0.32
+  },
+  "meeting_notes": {
+   "docs": 22,
+   "avg_chars": 351,
+   "n": 210,
+   "full": 69.0,
+   "partial": 9.5,
+   "miss": 21.4,
+   "fa_per_doc": 0.09
+  },
+  "messy_notes": {
+   "docs": 22,
+   "avg_chars": 272,
+   "n": 242,
+   "full": 80.6,
+   "partial": 3.7,
+   "miss": 15.7,
+   "fa_per_doc": 4.64
+  },
+  "confluence_xml": {
+   "docs": 22,
+   "avg_chars": 905,
+   "n": 176,
+   "full": 61.4,
+   "partial": 14.2,
+   "miss": 24.4,
+   "fa_per_doc": 1.09
+  },
+  "jira": {
+   "docs": 22,
+   "avg_chars": 435,
+   "n": 220,
+   "full": 86.4,
+   "partial": 3.2,
+   "miss": 10.5,
+   "fa_per_doc": 3.73
+  },
+  "email_thread": {
+   "docs": 22,
+   "avg_chars": 479,
+   "n": 440,
+   "full": 85.0,
+   "partial": 3.9,
+   "miss": 11.1,
+   "fa_per_doc": 1.32
+  },
+  "slack_export": {
+   "docs": 22,
+   "avg_chars": 861,
+   "n": 294,
+   "full": 67.7,
+   "partial": 7.5,
+   "miss": 24.8,
+   "fa_per_doc": 6.5
+  },
+  "csv_table": {
+   "docs": 22,
+   "avg_chars": 934,
+   "n": 1496,
+   "full": 82.2,
+   "partial": 5.9,
+   "miss": 11.9,
+   "fa_per_doc": 2.77
+  },
+  "log_file": {
+   "docs": 22,
+   "avg_chars": 1723,
+   "n": 380,
+   "full": 97.4,
+   "partial": 2.6,
+   "miss": 0.0,
+   "fa_per_doc": 3.95
+  },
+  "stack_trace": {
+   "docs": 22,
+   "avg_chars": 500,
+   "n": 110,
+   "full": 82.7,
+   "partial": 4.5,
+   "miss": 12.7,
+   "fa_per_doc": 4.41
+  },
+  "contract": {
+   "docs": 22,
+   "avg_chars": 830,
+   "n": 375,
+   "full": 87.7,
+   "partial": 6.4,
+   "miss": 5.9,
+   "fa_per_doc": 1.77
+  },
+  "invoice": {
+   "docs": 22,
+   "avg_chars": 440,
+   "n": 167,
+   "full": 88.0,
+   "partial": 8.4,
+   "miss": 3.6,
+   "fa_per_doc": 7.41
+  },
+  "hr_doc": {
+   "docs": 22,
+   "avg_chars": 410,
+   "n": 387,
+   "full": 92.5,
+   "partial": 5.4,
+   "miss": 2.1,
+   "fa_per_doc": 2.27
+  },
+  "sql_dump": {
+   "docs": 22,
+   "avg_chars": 1855,
+   "n": 1074,
+   "full": 77.7,
+   "partial": 5.9,
+   "miss": 16.4,
+   "fa_per_doc": 35.32
+  },
+  "config": {
+   "docs": 22,
+   "avg_chars": 281,
+   "n": 110,
+   "full": 95.5,
+   "partial": 0.9,
+   "miss": 3.6,
+   "fa_per_doc": 1.59
+  },
+  "readme_md": {
+   "docs": 22,
+   "avg_chars": 263,
+   "n": 132,
+   "full": 78.8,
+   "partial": 8.3,
+   "miss": 12.9,
+   "fa_per_doc": 3.32
+  },
+  "ocr_scan": {
+   "docs": 22,
+   "avg_chars": 263,
+   "n": 198,
+   "full": 98.5,
+   "partial": 1.5,
+   "miss": 0.0,
+   "fa_per_doc": 0.0
+  },
+  "chat_transcript": {
+   "docs": 22,
+   "avg_chars": 353,
+   "n": 264,
+   "full": 68.2,
+   "partial": 4.5,
+   "miss": 27.3,
+   "fa_per_doc": 4.64
+  }
+ },
+ "types": {
+  "GIVEN_NAME": {
+   "n": 1257,
+   "full": 63.3,
+   "partial": 8.4,
+   "miss": 28.2
+  },
+  "SURNAME": {
+   "n": 1121,
+   "full": 69.4,
+   "partial": 7.5,
+   "miss": 23.1
+  },
+  "PHONE": {
+   "n": 769,
+   "full": 90.6,
+   "partial": 7.7,
+   "miss": 1.7
+  },
+  "EMAIL": {
+   "n": 753,
+   "full": 98.3,
+   "partial": 1.7,
+   "miss": 0.0
+  },
+  "ISIKUKOOD": {
+   "n": 689,
+   "full": 100.0,
+   "partial": 0.0,
+   "miss": 0.0
+  },
+  "BANK_ACCOUNT": {
+   "n": 482,
+   "full": 100.0,
+   "partial": 0.0,
+   "miss": 0.0
+  },
+  "STREET_NAME": {
+   "n": 451,
+   "full": 85.6,
+   "partial": 10.4,
+   "miss": 4.0
+  },
+  "BUILDING_NUMBER": {
+   "n": 451,
+   "full": 78.5,
+   "partial": 0.9,
+   "miss": 20.6
+  },
+  "CITY": {
+   "n": 407,
+   "full": 84.8,
+   "partial": 5.4,
+   "miss": 9.8
+  },
+  "IP_ADDRESS": {
+   "n": 135,
+   "full": 100.0,
+   "partial": 0.0,
+   "miss": 0.0
+  },
+  "ZIP_CODE": {
+   "n": 110,
+   "full": 45.5,
+   "partial": 22.7,
+   "miss": 31.8
+  },
+  "GOVERNMENT_ID": {
+   "n": 66,
+   "full": 47.0,
+   "partial": 21.2,
+   "miss": 31.8
+  },
+  "SECONDARY_ADDRESS": {
+   "n": 38,
+   "full": 100.0,
+   "partial": 0.0,
+   "miss": 0.0
+  },
+  "PASSPORT": {
+   "n": 22,
+   "full": 100.0,
+   "partial": 0.0,
+   "miss": 0.0
+  },
+  "DRIVERS_LICENSE": {
+   "n": 22,
+   "full": 100.0,
+   "partial": 0.0,
+   "miss": 0.0
+  }
+ },
+ "fa_by_kind": {
+  "other": 798,
+  "uuid": 593,
+  "ident": 131,
+  "order": 120,
+  "company": 104,
+  "regcode": 63,
+  "product": 46,
+  "hash": 33,
+  "ticket": 20,
+  "amount": 10,
+  "date": 5
+ },
+ "total_fa": 1923,
+ "overall": {
+  "n": 6773,
+  "full": 82.2,
+  "partial": 5.5,
+  "miss": 12.3,
+  "fa_per_doc": 4.6
+ }
+}

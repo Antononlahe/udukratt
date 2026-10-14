@@ -1,0 +1,656 @@
+diff --git a/__tests__/et-never.test.ts b/__tests__/et-never.test.ts
+new file mode 100644
+index 0000000..26e4e3a
+--- /dev/null
++++ b/__tests__/et-never.test.ts
+@@ -0,0 +1,17 @@
++import { describe, expect, it } from "vitest";
++import { detectHeuristics, detectNeverPii, snapToWords } from "../src/heuristics";
++import { premask } from "../src/premask";
++
++describe("never-PII premask", () => {
++  it("masks identifiers but lets real PII win", () => {
++    const t = "id 694baad6-db4c-9492-bf5f-85e231d06d9c build=a3f9c21 <@U0A3F9K2L> v1.8.0 #8852 ip 10.0.0.1 konto ee382200221020145685";
++    const pii = detectHeuristics(t);
++    const never = detectNeverPii(t, pii);
++    expect(never.map((s) => s.label)).toEqual(["UUID", "HASH", "SLACK_ID", "VERSION", "REF"]);
++    expect(premask(t, [...pii, ...never]).masked).toBe("id [UUID] build=[HASH] <@[SLACK_ID]> [VERSION] [REF] ip [IP_ADDRESS] konto [BANK_ACCOUNT]");
++  });
++  it("snaps model spans to whole words", () => {
++    const t = "kella 17 Holm";
++    expect(snapToWords(t, { start: 2, end: 4, label: "STREET_NAME", score: 1, source: "ner", text: "ll" }).text).toBe("kella");
++  });
++});
+diff --git a/__tests__/et-parity.test.ts b/__tests__/et-parity.test.ts
+new file mode 100644
+index 0000000..003f2e5
+--- /dev/null
++++ b/__tests__/et-parity.test.ts
+@@ -0,0 +1,15 @@
++import { describe, expect, test } from "vitest";
++import cases from "./fixtures/et-parity.json";
++import { detectHeuristics } from "../src/heuristics";
++import { mergeSpans } from "../src/policy";
++import { premask } from "../src/premask";
++
++describe("Python/TypeScript deterministic parity", () => {
++  for (const c of cases as { text: string; spans: [number, number, string][]; masked: string }[]) {
++    test(c.text, () => {
++      const spans = mergeSpans(detectHeuristics(c.text)).sort((a, b) => a.start - b.start);
++      expect(spans.map((s) => [s.start, s.end, s.label])).toEqual(c.spans);
++      expect(premask(c.text, spans).masked).toBe(c.masked);
++    });
++  }
++});
+diff --git a/__tests__/fixtures/et-parity.json b/__tests__/fixtures/et-parity.json
+new file mode 100644
+index 0000000..b647731
+--- /dev/null
++++ b/__tests__/fixtures/et-parity.json
+@@ -0,0 +1,168 @@
++[
++ {
++  "text": "Isikukood 38001085718, tel +372 5555 5555.",
++  "spans": [
++   [
++    10,
++    21,
++    "ISIKUKOOD"
++   ]
++  ],
++  "masked": "Isikukood [ISIKUKOOD], tel +372 5555 5555."
++ },
++ {
++  "text": "IK 380 0108 5718 tel 5123 4567",
++  "spans": [
++   [
++    3,
++    16,
++    "ISIKUKOOD"
++   ]
++  ],
++  "masked": "IK [ISIKUKOOD] tel 5123 4567"
++ },
++ {
++  "text": "38001085718 51234567",
++  "spans": [
++   [
++    0,
++    11,
++    "ISIKUKOOD"
++   ]
++  ],
++  "masked": "[ISIKUKOOD] 51234567"
++ },
++ {
++  "text": "vale kood 38001085719 ja tellimus 380010857189",
++  "spans": [],
++  "masked": "vale kood 38001085719 ja tellimus 380010857189"
++ },
++ {
++  "text": "arve EE38 2200 2210 2014 5685 ja summa 500 EUR",
++  "spans": [
++   [
++    5,
++    29,
++    "BANK_ACCOUNT"
++   ]
++  ],
++  "masked": "arve [BANK_ACCOUNT] ja summa 500 EUR"
++ },
++ {
++  "text": "konto ee382200221020145685.",
++  "spans": [
++   [
++    6,
++    26,
++    "BANK_ACCOUNT"
++   ]
++  ],
++  "masked": "konto [BANK_ACCOUNT]."
++ },
++ {
++  "text": "IBAN DE89 3704 0044 0532 0130 00 palun",
++  "spans": [
++   [
++    5,
++    32,
++    "BANK_ACCOUNT"
++   ]
++  ],
++  "masked": "IBAN [BANK_ACCOUNT] palun"
++ },
++ {
++  "text": "kaart 4111 1111 1111 1111, mail jaan.tamm@eesti.ee ip 10.0.0.1",
++  "spans": [
++   [
++    6,
++    25,
++    "CREDIT_CARD"
++   ],
++   [
++    32,
++    50,
++    "EMAIL"
++   ],
++   [
++    54,
++    62,
++    "IP_ADDRESS"
++   ]
++  ],
++  "masked": "kaart [CREDIT_CARD], mail [EMAIL] ip [IP_ADDRESS]"
++ },
++ {
++  "text": "server 2001:db8::1 ja mac 00:1A:2B:3C:4D:5E",
++  "spans": [
++   [
++    7,
++    18,
++    "IP_ADDRESS"
++   ],
++   [
++    26,
++    43,
++    "IP_ADDRESS"
++   ]
++  ],
++  "masked": "server [IP_ADDRESS] ja mac [IP_ADDRESS]"
++ },
++ {
++  "text": "vt https://www.eesti.ee/et/toetused ja www.tootukassa.ee",
++  "spans": [
++   [
++    3,
++    35,
++    "URL"
++   ],
++   [
++    39,
++    56,
++    "URL"
++   ]
++  ],
++  "masked": "vt [URL] ja [URL]"
++ },
++ {
++  "text": "Меня зовут Елена Смирнова, личный код 49403136526.",
++  "spans": [
++   [
++    38,
++    49,
++    "ISIKUKOOD"
++   ]
++  ],
++  "masked": "Menja zovut Jelena Smirnova, litšnõi kod [ISIKUKOOD]."
++ },
++ {
++  "text": "Сергей Йошкин живёт в Нарве, улица Юрия Щербакова 5",
++  "spans": [],
++  "masked": "Sergei Joškin živjot v Narve, ulitsa Jurija Štšerbakova 5"
++ },
++ {
++  "text": "Мägi ja Тамм kirjutasid",
++  "spans": [],
++  "masked": "Mägi ja Tamm kirjutasid"
++ },
++ {
++  "text": "summa 1250,50 eurot, § 32 lg 1, asi nr 3-21-1234",
++  "spans": [],
++  "masked": "summa 1250,50 eurot, § 32 lg 1, asi nr 3-21-1234"
++ },
++ {
++  "text": "Ярослав Ільченко, тел 53 456 789",
++  "spans": [],
++  "masked": "Jaroslav Iltšenko, tel 53 456 789"
++ },
++ {
++  "text": "kood 6 0108 1503 18 ja telefon 5 123 4567",
++  "spans": [
++   [
++    5,
++    19,
++    "ISIKUKOOD"
++   ]
++  ],
++  "masked": "kood [ISIKUKOOD] ja telefon 5 123 4567"
++ }
++]
+\ No newline at end of file
+diff --git a/__tests__/heuristics.test.ts b/__tests__/heuristics.test.ts
+index 7f614a3..d1074f2 100644
+--- a/__tests__/heuristics.test.ts
++++ b/__tests__/heuristics.test.ts
+@@ -1,19 +1,22 @@
+ import { describe, expect, it } from "vitest";
+ import { detectHeuristics } from "../src/heuristics";
+ 
+-describe("SSN detection across separator variants", () => {
+-  // The core requirement: every separator form collapses to one rule.
+-  const variants = ["888-12-3456", "888 12 3456", "888.12.3456", "888123456"];
++describe("isikukood detection across separator variants", () => {
++  const variants = ["38001085718", "380 0108 5718", "3800108-5718", "380.0108.5718"];
+   for (const variant of variants) {
+-    it(`detects ${variant} as SSN`, () => {
+-      const found = detectHeuristics(`my ssn is ${variant}.`);
+-      const ssn = found.find((s) => s.label === "SSN");
+-      expect(ssn).toBeDefined();
+-      // The raw span covers the human-readable form whole, separators included.
+-      expect(ssn?.text).toBe(variant);
++    it(`detects ${variant} as ISIKUKOOD`, () => {
++      const found = detectHeuristics(`isikukood ${variant}.`);
++      const ik = found.find((s) => s.label === "ISIKUKOOD");
++      expect(ik).toBeDefined();
++      expect(ik?.text).toBe(variant);
+     });
+   }
+ 
++  it("rejects a wrong check digit and an impossible date", () => {
++    expect(detectHeuristics("38001085719").some((s) => s.label === "ISIKUKOOD")).toBe(false);
++    expect(detectHeuristics("38013325718").some((s) => s.label === "ISIKUKOOD")).toBe(false);
++  });
++
+   it("rejects structurally invalid SSNs (000 area)", () => {
+     const found = detectHeuristics("000-12-3456");
+     expect(found.some((s) => s.label === "SSN")).toBe(false);
+diff --git a/__tests__/premask.test.ts b/__tests__/premask.test.ts
+index 54f3d2a..a93f6cd 100644
+--- a/__tests__/premask.test.ts
++++ b/__tests__/premask.test.ts
+@@ -55,7 +55,7 @@ describe("premask", () => {
+ 
+ describe("pipeline premask integration", () => {
+   it("feeds the model masked text and merges projected spans onto raw", async () => {
+-    const raw = "Maya at 472-81-0094 lives in Reno";
++    const raw = "Maya at 38001085718 lives in Reno";
+     let sawByModel = "";
+     // Mock NER: record what it received, and label "Maya" (offsets into masked).
+     const ner = async (text: string): Promise<Span[]> => {
+@@ -67,12 +67,12 @@ describe("pipeline premask integration", () => {
+     const { text } = await guard.protect(raw);
+ 
+     // The model must never have seen the raw SSN.
+-    expect(sawByModel).not.toContain("472-81-0094");
+-    expect(sawByModel).toContain("[SSN]");
++    expect(sawByModel).not.toContain("38001085718");
++    expect(sawByModel).toContain("[ISIKUKOOD]");
+     // Both the heuristic SSN and the model's name are redacted with raw offsets.
+-    expect(text).toContain("[SSN_1]");
++    expect(text).toContain("[ISIKUKOOD_1]");
+     expect(text).toContain("[GIVEN_NAME_1]");
+-    expect(text).not.toContain("472-81-0094");
++    expect(text).not.toContain("38001085718");
+     expect(text).not.toContain("Maya");
+     // Kept geography stays.
+     expect(text).toContain("Reno");
+diff --git a/eval/bench/labels.ts b/eval/bench/labels.ts
+index 5deea26..07810ee 100644
+--- a/eval/bench/labels.ts
++++ b/eval/bench/labels.ts
+@@ -18,7 +18,11 @@ const OPENPII_TO_OURS: Readonly<Record<string, string>> = {
+   EMAIL: "EMAIL",
+   TELEPHONENUM: "PHONE",
+   // Government / financial strong identifiers (redact)
+-  SOCIALNUM: "SSN",
++  SOCIALNUM: "ISIKUKOOD",
++  IBAN: "BANK_ACCOUNT",
++  SECADDRESS: "SECONDARY_ADDRESS",
++  URL: "URL",
++  IP: "IP_ADDRESS",
+   CREDITCARDNUMBER: "CREDIT_CARD",
+   IDCARDNUM: "GOVERNMENT_ID",
+   PASSPORTNUM: "PASSPORT",
+diff --git a/src/guard.ts b/src/guard.ts
+index 8046f8e..decb807 100644
+--- a/src/guard.ts
++++ b/src/guard.ts
+@@ -20,7 +20,7 @@
+  *     → rehydrate placeholders → render to user
+  */
+ 
+-import { detectHeuristics } from "./heuristics";
++import { detectHeuristics, detectNeverPii, snapToWords } from "./heuristics";
+ import { loadNerClassifier, detectNer, RAMPART_MODEL_ID, type NerOptions } from "./ner/classifier";
+ import { createWorkerClassifier, type WorkerMessagePort } from "./ner/worker";
+ import { premask, projectMaskedSpan } from "./premask";
+@@ -87,12 +87,16 @@ export class ChatGuard {
+       const modelSpans = await this.ner(text);
+       return [...heuristic, ...modelSpans];
+     }
+-    const map = premask(text, heuristic);
++    const never = detectNeverPii(text, heuristic);
++    const masks = [...heuristic, ...never];
++    const map = premask(text, masks);
+     const maskedSpans = await this.ner(map.masked);
+     const contextual: Span[] = [];
+     for (const span of maskedSpans) {
+       const projected = projectMaskedSpan(span, text, map);
+-      if (projected !== null) contextual.push(projected);
++      if (projected === null) continue;
++      const snapped = snapToWords(text, projected);
++      if (!masks.some((m) => m.start < snapped.end && snapped.start < m.end)) contextual.push(snapped);
+     }
+     return [...heuristic, ...contextual];
+   }
+diff --git a/src/heuristics.ts b/src/heuristics.ts
+index 216582b..a44a1a5 100644
+--- a/src/heuristics.ts
++++ b/src/heuristics.ts
+@@ -9,7 +9,7 @@
+  */
+ 
+ import type { PiiLabel, Span } from "./types";
+-import { isLuhnValid, isValidSsn } from "./validators";
++import { isLuhnValid, isValidIban, isValidIsikukood } from "./validators";
+ 
+ /** A fixed-length digit candidate paired with its label and validator. */
+ interface DigitRule {
+@@ -24,59 +24,82 @@ interface DigitRule {
+ // never carved into a 9-digit "SSN". Overlap is also resolved later in merge.
+ const DIGIT_RULES: readonly DigitRule[] = [
+   { label: "CREDIT_CARD", lengths: [16, 15, 14], validate: isLuhnValid },
+-  { label: "SSN", lengths: [9], validate: isValidSsn },
++  { label: "ISIKUKOOD", lengths: [11], validate: isValidIsikukood },
+ ];
+ 
+-/**
+- * A contiguous digit run with its inline separators, e.g. `888 12 3456`. Runs
+- * never span a letter or other word boundary, so digits from different fields
+- * ("...3456 and income is 50000") can't merge into one phantom candidate.
+- */
+-interface DigitRun {
+-  /** Separator-free digits of the run. */
++interface DigitGroup {
+   readonly digits: string;
+-  /** `rawIndex[i]` is the raw offset of `digits[i]`. */
+   readonly rawIndex: number[];
+ }
+ 
+-// A run is digits joined only by single inline separators (space, dash, dot).
+ const DIGIT_RUN = /\d(?:[ .-]?\d)*/g;
+ 
+-function extractRuns(raw: string): DigitRun[] {
+-  const runs: DigitRun[] = [];
++function extractGroups(run: string, offset: number): DigitGroup[] {
++  const groups: DigitGroup[] = [];
++  let digits = "";
++  let rawIndex: number[] = [];
++  for (let i = 0; i < run.length; i++) {
++    const code = run.charCodeAt(i);
++    if (code >= 0x30 && code <= 0x39) {
++      digits += run[i];
++      rawIndex.push(offset + i);
++    } else if (digits) {
++      groups.push({ digits, rawIndex });
++      digits = "";
++      rawIndex = [];
++    }
++  }
++  if (digits) groups.push({ digits, rawIndex });
++  return groups;
++}
++
++function detectDigitEntities(raw: string): Span[] {
++  const spans: Span[] = [];
+   DIGIT_RUN.lastIndex = 0;
+   for (let m = DIGIT_RUN.exec(raw); m !== null; m = DIGIT_RUN.exec(raw)) {
+-    const digits: string[] = [];
+-    const rawIndex: number[] = [];
+-    for (let i = 0; i < m[0].length; i++) {
+-      const code = m[0].charCodeAt(i);
+-      if (code >= 0x30 && code <= 0x39) {
+-        digits.push(m[0][i]);
+-        rawIndex.push(m.index + i);
++    const groups = extractGroups(m[0], m.index);
++    const taken = new Set<number>();
++    for (const rule of DIGIT_RULES) {
++      const maxLen = Math.max(...rule.lengths);
++      for (let i = 0; i < groups.length; i++) {
++        let total = 0;
++        for (let j = i; j < groups.length && total < maxLen; ) {
++          total += groups[j].digits.length;
++          j++;
++          if (!rule.lengths.includes(total)) continue;
++          let free = true;
++          for (let k = i; k < j; k++) if (taken.has(k)) free = false;
++          if (!free) continue;
++          const digits = groups.slice(i, j).map((g) => g.digits).join("");
++          if (!rule.validate(digits)) continue;
++          const start = groups[i].rawIndex[0];
++          const last = groups[j - 1].rawIndex;
++          const end = last[last.length - 1] + 1;
++          spans.push({ start, end, label: rule.label, score: 1, source: "heuristic", text: raw.slice(start, end) });
++          for (let k = i; k < j; k++) taken.add(k);
++          break;
++        }
+       }
+     }
+-    runs.push({ digits: digits.join(""), rawIndex });
+   }
+-  return runs;
++  return spans;
+ }
+ 
+-/**
+- * Scan each digit run for fixed-length, validator-backed entities. A candidate
+- * is anchored to the *whole* run (start..len and end-len..end) so we only match
+- * when the run length equals the entity length — preventing a 9-digit SSN from
+- * firing inside a longer account number. The raw span includes interior
+- * separators so redaction covers `888-12-3456` whole.
+- */
+-function detectDigitEntities(raw: string): Span[] {
++const IBAN = /\b[A-Za-z]{2}\d{2}(?: ?[A-Za-z0-9]{4}){2,7}(?: ?[A-Za-z0-9]{1,3})?\b/g;
++
++function detectIban(raw: string): Span[] {
+   const spans: Span[] = [];
+-  for (const run of extractRuns(raw)) {
+-    for (const rule of DIGIT_RULES) {
+-      if (!rule.lengths.includes(run.digits.length)) continue;
+-      if (!rule.validate(run.digits)) continue;
+-      const start = run.rawIndex[0];
+-      const end = run.rawIndex[run.rawIndex.length - 1] + 1;
+-      spans.push({ start, end, label: rule.label, score: 1, source: "heuristic", text: raw.slice(start, end) });
+-      break; // first matching rule (rules are ordered strict→loose) wins the run
++  IBAN.lastIndex = 0;
++  for (let m = IBAN.exec(raw); m !== null; m = IBAN.exec(raw)) {
++    let text = m[0];
++    while (text.replace(/ /g, "").length >= 15) {
++      if (isValidIban(text)) {
++        spans.push({ start: m.index, end: m.index + text.length, label: "BANK_ACCOUNT", score: 1, source: "heuristic", text });
++        break;
++      }
++      const cut = text.lastIndexOf(" ");
++      if (cut < 0) break;
++      text = text.slice(0, cut);
+     }
+   }
+   return spans;
+@@ -136,6 +159,51 @@ function detectTextEntities(raw: string): Span[] {
+ export function detectHeuristics(raw: string): Span[] {
+   return [
+     ...detectDigitEntities(raw),
++    ...detectIban(raw),
+     ...detectTextEntities(raw),
+   ];
+ }
++
++const NEVER_RULES: ReadonlyArray<{ label: PiiLabel; pattern: RegExp }> = [
++  { label: "UUID", pattern: /\b[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}\b/g },
++  { label: "SLACK_ID", pattern: /\b[UWCT]0[A-Z0-9]{6,10}\b/g },
++  { label: "HASH", pattern: /\b(?=[0-9a-f]*[a-f])(?=[0-9a-f]*[0-9])[0-9a-f]{7,64}\b/g },
++  { label: "VERSION", pattern: /\bv\d+(?:\.\d+){1,3}\b|(?<![\d.])\d{1,2}\.\d{1,3}\.\d{1,3}(?![\d.])/g },
++  { label: "REF", pattern: /#\d{2,}\b/g },
++];
++
++/** Identifier-like tokens that are never PII (UUIDs, hashes, Slack ids, versions, #refs). They are
++ * premasked so the model does not fire on them, and dropped wherever a real PII heuristic overlaps.
++ * Overlaps among them merge like et/deterministic.py: on containment the longer span wins. */
++export function detectNeverPii(raw: string, pii: readonly Span[]): Span[] {
++  const found: Span[] = [];
++  for (const { label, pattern } of NEVER_RULES) {
++    pattern.lastIndex = 0;
++    for (let m = pattern.exec(raw); m !== null; m = pattern.exec(raw)) {
++      const start = m.index, end = m.index + m[0].length;
++      if (!pii.some((p) => p.start < end && start < p.end)) found.push({ start, end, label, score: 1, source: "heuristic", text: m[0] });
++    }
++  }
++  found.sort((a, b) => a.start - b.start || b.end - a.end);
++  const out: Span[] = [];
++  for (const s of found) {
++    const p = out[out.length - 1];
++    if (p !== undefined && s.start < p.end) {
++      const win = s.end - s.start > p.end - p.start ? s : p;
++      const contains = (p.start <= s.start && p.end >= s.end) || (s.start <= p.start && s.end >= p.end);
++      const start = Math.min(p.start, s.start), end = Math.max(p.end, s.end);
++      out[out.length - 1] = contains ? win : { ...win, start, end, text: raw.slice(start, end) };
++    } else out.push(s);
++  }
++  return out;
++}
++
++const WORD = /[\p{L}\p{N}]/u;
++
++/** Expand a model span to whole-word boundaries in the raw text. */
++export function snapToWords(raw: string, span: Span): Span {
++  let start = span.start, end = span.end;
++  while (start > 0 && WORD.test(raw[start - 1]!)) start--;
++  while (end < raw.length && WORD.test(raw[end]!)) end++;
++  return { ...span, start, end, text: raw.slice(start, end) };
++}
+diff --git a/src/premask.ts b/src/premask.ts
+index 5f2be9f..fe7bdb0 100644
+--- a/src/premask.ts
++++ b/src/premask.ts
+@@ -22,6 +22,7 @@
+  */
+ 
+ import { mergeSpans } from "./policy";
++import { translitChar } from "./translit";
+ import type { PiiLabel, Span } from "./types";
+ 
+ /** A masked copy of the input plus a map from each masked char to raw offsets. */
+@@ -53,9 +54,12 @@ export function premask(raw: string, spans: readonly Span[]): PremaskResult {
+ 
+   const copyVerbatim = (from: number, to: number): void => {
+     for (let i = from; i < to; i++) {
+-      masked += raw[i];
+-      rawStart.push(i);
+-      rawEnd.push(i + 1);
++      const out = translitChar(raw, i);
++      for (let k = 0; k < out.length; k++) {
++        masked += out[k];
++        rawStart.push(i);
++        rawEnd.push(i + 1);
++      }
+     }
+   };
+ 
+diff --git a/src/translit.ts b/src/translit.ts
+new file mode 100644
+index 0000000..a10e07f
+--- /dev/null
++++ b/src/translit.ts
+@@ -0,0 +1,29 @@
++const VOWELS = new Set("аеёиоуыэюяaeiouõäöüy");
++
++const BASE: Readonly<Record<string, string>> = {
++  а: "a", б: "b", в: "v", г: "g", д: "d", ж: "ž", з: "z", и: "i", к: "k", л: "l", м: "m", н: "n",
++  о: "o", п: "p", р: "r", с: "s", т: "t", у: "u", ф: "f", х: "h", ц: "ts", ч: "tš", ш: "š", щ: "štš",
++  ъ: "", ы: "õ", ь: "", э: "e", ю: "ju", я: "ja", і: "i", ї: "ji", є: "je", ґ: "g", ў: "u",
++};
++
++const LETTER = /\p{L}/u;
++
++export function translitChar(text: string, i: number): string {
++  const c = text[i];
++  const low = c.toLowerCase();
++  const prev = i > 0 ? text[i - 1].toLowerCase() : " ";
++  const next = i + 1 < text.length ? text[i + 1].toLowerCase() : " ";
++  let out: string;
++  if (low === "е") out = !LETTER.test(prev) || VOWELS.has(prev) || prev === "ъ" || prev === "ь" ? "je" : "e";
++  else if (low === "ё") out = "жчшщ".includes(prev) ? "o" : "jo";
++  else if (low === "й") out = VOWELS.has(next) ? "j" : "i";
++  else if (low in BASE) out = BASE[low];
++  else return c;
++  return c !== low && out ? out[0].toUpperCase() + out.slice(1) : out;
++}
++
++export function transliterate(text: string): string {
++  let out = "";
++  for (let i = 0; i < text.length; i++) out += translitChar(text, i);
++  return out;
++}
+diff --git a/src/types.ts b/src/types.ts
+index 9c7b1bf..de36e3d 100644
+--- a/src/types.ts
++++ b/src/types.ts
+@@ -16,6 +16,7 @@
+ export type PiiLabel =
+   // --- Structured (heuristic-detectable, premasked before the model) ---
+   | "SSN"
++  | "ISIKUKOOD"
+   | "CREDIT_CARD"
+   | "IP_ADDRESS"
+   // --- Contextual (NER model fine set) ---
+@@ -36,7 +37,15 @@ export type PiiLabel =
+   | "SECONDARY_ADDRESS"
+   | "CITY"
+   | "STATE"
+-  | "ZIP_CODE";
++  | "ZIP_CODE"
++  // --- Never-PII (premasked so the model ignores them, never redacted) ---
++  | "UUID"
++  | "HASH"
++  | "SLACK_ID"
++  | "VERSION"
++  | "REF";
++
++export const NEVER_PII_LABELS: ReadonlySet<PiiLabel> = new Set<PiiLabel>(["UUID", "HASH", "SLACK_ID", "VERSION", "REF"]);
+ 
+ /**
+  * Labels that are intentionally preserved (classified but never redacted).
+diff --git a/src/validators.ts b/src/validators.ts
+index 5a2a257..c54f932 100644
+--- a/src/validators.ts
++++ b/src/validators.ts
+@@ -38,3 +38,40 @@ export function isValidSsn(digits: string): boolean {
+   if (serial === "0000") return false;
+   return true;
+ }
++
++const IK_W1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 1];
++const IK_W2 = [3, 4, 5, 6, 7, 8, 9, 1, 2, 3];
++
++export function isikukoodCheckDigit(first10: string): number {
++  for (const weights of [IK_W1, IK_W2]) {
++    let sum = 0;
++    for (let i = 0; i < 10; i++) sum += (first10.charCodeAt(i) - 0x30) * weights[i];
++    const r = sum % 11;
++    if (r < 10) return r;
++  }
++  return 0;
++}
++
++export function isValidIsikukood(digits: string): boolean {
++  if (!/^\d{11}$/.test(digits)) return false;
++  const g = digits.charCodeAt(0) - 0x30;
++  if (g < 1 || g > 8) return false;
++  const year = 1800 + 100 * Math.floor((g - 1) / 2) + Number(digits.slice(1, 3));
++  const month = Number(digits.slice(3, 5));
++  const day = Number(digits.slice(5, 7));
++  const d = new Date(Date.UTC(year, month - 1, day));
++  if (d.getUTCFullYear() !== year || d.getUTCMonth() !== month - 1 || d.getUTCDate() !== day) return false;
++  return isikukoodCheckDigit(digits.slice(0, 10)) === digits.charCodeAt(10) - 0x30;
++}
++
++export function isValidIban(value: string): boolean {
++  const s = value.replace(/ /g, "").toUpperCase();
++  if (s.length < 15 || s.length > 34 || !/^[A-Z]{2}\d{2}[A-Z0-9]+$/.test(s)) return false;
++  if (s.startsWith("EE") && s.length !== 20) return false;
++  let rem = 0;
++  for (const ch of s.slice(4) + s.slice(0, 4)) {
++    const v = parseInt(ch, 36);
++    rem = v > 9 ? (rem * 100 + v) % 97 : (rem * 10 + v) % 97;
++  }
++  return rem === 1;
++}

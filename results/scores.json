@@ -1,0 +1,2137 @@
+{
+ "run3": {
+  "corp_suite": {
+   "overall": {
+    "n": 6773,
+    "full": 82.3,
+    "partial": 5.5,
+    "miss": 12.2,
+    "fa_per_doc": 4.29,
+    "public_kept": 73.9
+   },
+   "types": {
+    "GIVEN_NAME": {
+     "n": 1257,
+     "full": 63.7,
+     "miss": 27.8
+    },
+    "SURNAME": {
+     "n": 1121,
+     "full": 69.3,
+     "miss": 23.0
+    },
+    "PHONE": {
+     "n": 769,
+     "full": 90.2,
+     "miss": 2.0
+    },
+    "EMAIL": {
+     "n": 753,
+     "full": 98.3,
+     "miss": 0.0
+    },
+    "ISIKUKOOD": {
+     "n": 689,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "BANK_ACCOUNT": {
+     "n": 482,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "STREET_NAME": {
+     "n": 451,
+     "full": 86.5,
+     "miss": 4.2
+    },
+    "BUILDING_NUMBER": {
+     "n": 451,
+     "full": 78.0,
+     "miss": 21.1
+    },
+    "CITY": {
+     "n": 407,
+     "full": 85.3,
+     "miss": 9.6
+    },
+    "IP_ADDRESS": {
+     "n": 135,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "ZIP_CODE": {
+     "n": 110,
+     "full": 46.4,
+     "miss": 30.0
+    },
+    "GOVERNMENT_ID": {
+     "n": 66,
+     "full": 47.0,
+     "miss": 31.8
+    },
+    "SECONDARY_ADDRESS": {
+     "n": 38,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "PASSPORT": {
+     "n": 22,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "DRIVERS_LICENSE": {
+     "n": 22,
+     "full": 100.0,
+     "miss": 0.0
+    }
+   },
+   "formats": {
+    "openapi_yaml": {
+     "n": 264,
+     "full": 66.7,
+     "miss": 26.9,
+     "fa_per_doc": 3.59
+    },
+    "openapi_json": {
+     "n": 234,
+     "full": 98.7,
+     "miss": 0.9,
+     "fa_per_doc": 2.32
+    },
+    "meeting_notes": {
+     "n": 210,
+     "full": 69.5,
+     "miss": 21.4,
+     "fa_per_doc": 0.32
+    },
+    "messy_notes": {
+     "n": 242,
+     "full": 78.9,
+     "miss": 16.5,
+     "fa_per_doc": 4.5
+    },
+    "confluence_xml": {
+     "n": 176,
+     "full": 61.4,
+     "miss": 24.4,
+     "fa_per_doc": 1.09
+    },
+    "jira": {
+     "n": 220,
+     "full": 85.9,
+     "miss": 11.4,
+     "fa_per_doc": 3.23
+    },
+    "email_thread": {
+     "n": 440,
+     "full": 86.1,
+     "miss": 10.5,
+     "fa_per_doc": 1.82
+    },
+    "slack_export": {
+     "n": 294,
+     "full": 65.3,
+     "miss": 24.8,
+     "fa_per_doc": 9.59
+    },
+    "csv_table": {
+     "n": 1496,
+     "full": 82.2,
+     "miss": 11.9,
+     "fa_per_doc": 2.77
+    },
+    "log_file": {
+     "n": 380,
+     "full": 97.6,
+     "miss": 0.0,
+     "fa_per_doc": 7.64
+    },
+    "stack_trace": {
+     "n": 110,
+     "full": 80.9,
+     "miss": 15.5,
+     "fa_per_doc": 3.55
+    },
+    "contract": {
+     "n": 375,
+     "full": 88.0,
+     "miss": 5.6,
+     "fa_per_doc": 2.09
+    },
+    "invoice": {
+     "n": 167,
+     "full": 88.6,
+     "miss": 3.6,
+     "fa_per_doc": 8.05
+    },
+    "hr_doc": {
+     "n": 387,
+     "full": 93.0,
+     "miss": 1.8,
+     "fa_per_doc": 2.55
+    },
+    "sql_dump": {
+     "n": 1074,
+     "full": 79.0,
+     "miss": 15.2,
+     "fa_per_doc": 16.55
+    },
+    "config": {
+     "n": 110,
+     "full": 95.5,
+     "miss": 3.6,
+     "fa_per_doc": 2.59
+    },
+    "readme_md": {
+     "n": 132,
+     "full": 78.8,
+     "miss": 12.1,
+     "fa_per_doc": 4.36
+    },
+    "ocr_scan": {
+     "n": 198,
+     "full": 98.5,
+     "miss": 0.0,
+     "fa_per_doc": 0.23
+    },
+    "chat_transcript": {
+     "n": 264,
+     "full": 68.2,
+     "miss": 27.3,
+     "fa_per_doc": 4.64
+    }
+   }
+  },
+  "synth_heldout": {
+   "overall": {
+    "n": 16065,
+    "full": 95.6,
+    "partial": 1.1,
+    "miss": 3.2,
+    "fa_per_doc": 0.46,
+    "public_kept": 97.8
+   },
+   "types": {
+    "GIVENNAME": {
+     "n": 2774,
+     "full": 81.0,
+     "miss": 15.8
+    },
+    "SURNAME": {
+     "n": 2259,
+     "full": 94.7,
+     "miss": 3.3
+    },
+    "SOCIALNUM": {
+     "n": 1874,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "TELEPHONENUM": {
+     "n": 1551,
+     "full": 99.9,
+     "miss": 0.0
+    },
+    "CITY": {
+     "n": 1382,
+     "full": 99.6,
+     "miss": 0.0
+    },
+    "EMAIL": {
+     "n": 1106,
+     "full": 97.0,
+     "miss": 0.0
+    },
+    "STREET": {
+     "n": 1002,
+     "full": 99.5,
+     "miss": 0.0
+    },
+    "BUILDINGNUM": {
+     "n": 922,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "ZIPCODE": {
+     "n": 680,
+     "full": 98.8,
+     "miss": 0.4
+    },
+    "SECADDRESS": {
+     "n": 636,
+     "full": 99.8,
+     "miss": 0.0
+    },
+    "PASSPORTNUM": {
+     "n": 615,
+     "full": 99.8,
+     "miss": 0.0
+    },
+    "IDCARDNUM": {
+     "n": 477,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "STATE": {
+     "n": 387,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "IBAN": {
+     "n": 252,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "TAXNUM": {
+     "n": 148,
+     "full": 100.0,
+     "miss": 0.0
+    }
+   },
+   "formats": {}
+  },
+  "estner_test": {
+   "overall": {
+    "n": 1644,
+    "full": 60.0,
+    "partial": 5.5,
+    "miss": 34.5,
+    "fa_per_doc": 1.11,
+    "public_kept": 93.9
+   },
+   "types": {
+    "SURNAME": {
+     "n": 955,
+     "full": 56.0,
+     "miss": 37.9
+    },
+    "GIVENNAME": {
+     "n": 620,
+     "full": 67.7,
+     "miss": 28.2
+    },
+    "CITY": {
+     "n": 63,
+     "full": 49.2,
+     "miss": 41.3
+    },
+    "STREET": {
+     "n": 6,
+     "full": 0.0,
+     "miss": 66.7
+    }
+   },
+   "formats": {}
+  },
+  "gov_chats": {
+   "overall": {
+    "n": 82,
+    "full": 75.6,
+    "partial": 7.3,
+    "miss": 17.1,
+    "fa_per_doc": 0.13,
+    "public_kept": 100.0
+   },
+   "types": {
+    "GIVENNAME": {
+     "n": 18,
+     "full": 66.7,
+     "miss": 22.2
+    },
+    "SURNAME": {
+     "n": 18,
+     "full": 72.2,
+     "miss": 22.2
+    },
+    "TELEPHONENUM": {
+     "n": 11,
+     "full": 81.8,
+     "miss": 0.0
+    },
+    "SOCIALNUM": {
+     "n": 6,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "IDCARDNUM": {
+     "n": 6,
+     "full": 50.0,
+     "miss": 50.0
+    },
+    "EMAIL": {
+     "n": 5,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "CITY": {
+     "n": 4,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "IBAN": {
+     "n": 3,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "STREET": {
+     "n": 3,
+     "full": 66.7,
+     "miss": 0.0
+    },
+    "BUILDINGNUM": {
+     "n": 3,
+     "full": 33.3,
+     "miss": 66.7
+    },
+    "IP": {
+     "n": 3,
+     "full": 66.7,
+     "miss": 33.3
+    },
+    "URL": {
+     "n": 1,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "CREDITCARDNUMBER": {
+     "n": 1,
+     "full": 100.0,
+     "miss": 0.0
+    }
+   },
+   "formats": {}
+  },
+  "fairness": {
+   "overall": {
+    "n": 4500,
+    "full": 69.6,
+    "partial": 3.4,
+    "miss": 27.0,
+    "fa_per_doc": 0.06,
+    "public_kept": 0.0
+   },
+   "types": {
+    "GIVENNAME": {
+     "n": 2250,
+     "full": 68.6,
+     "miss": 27.8
+    },
+    "SURNAME": {
+     "n": 2250,
+     "full": 70.5,
+     "miss": 26.3
+    }
+   },
+   "formats": {}
+  }
+ },
+ "run4": {
+  "corp_suite": {
+   "overall": {
+    "n": 6773,
+    "full": 96.8,
+    "partial": 0.4,
+    "miss": 2.8,
+    "fa_per_doc": 5.01,
+    "public_kept": 85.3
+   },
+   "types": {
+    "GIVEN_NAME": {
+     "n": 1257,
+     "full": 88.9,
+     "miss": 10.4
+    },
+    "SURNAME": {
+     "n": 1121,
+     "full": 96.3,
+     "miss": 3.5
+    },
+    "PHONE": {
+     "n": 769,
+     "full": 98.4,
+     "miss": 1.6
+    },
+    "EMAIL": {
+     "n": 753,
+     "full": 98.3,
+     "miss": 0.0
+    },
+    "ISIKUKOOD": {
+     "n": 689,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "BANK_ACCOUNT": {
+     "n": 482,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "STREET_NAME": {
+     "n": 451,
+     "full": 99.8,
+     "miss": 0.0
+    },
+    "BUILDING_NUMBER": {
+     "n": 451,
+     "full": 99.3,
+     "miss": 0.4
+    },
+    "CITY": {
+     "n": 407,
+     "full": 99.5,
+     "miss": 0.5
+    },
+    "IP_ADDRESS": {
+     "n": 135,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "ZIP_CODE": {
+     "n": 110,
+     "full": 98.2,
+     "miss": 1.8
+    },
+    "GOVERNMENT_ID": {
+     "n": 66,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "SECONDARY_ADDRESS": {
+     "n": 38,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "PASSPORT": {
+     "n": 22,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "DRIVERS_LICENSE": {
+     "n": 22,
+     "full": 100.0,
+     "miss": 0.0
+    }
+   },
+   "formats": {
+    "openapi_yaml": {
+     "n": 264,
+     "full": 98.9,
+     "miss": 1.1,
+     "fa_per_doc": 1.0
+    },
+    "openapi_json": {
+     "n": 234,
+     "full": 99.1,
+     "miss": 0.9,
+     "fa_per_doc": 0.64
+    },
+    "meeting_notes": {
+     "n": 210,
+     "full": 85.2,
+     "miss": 14.3,
+     "fa_per_doc": 0.05
+    },
+    "messy_notes": {
+     "n": 242,
+     "full": 97.1,
+     "miss": 2.5,
+     "fa_per_doc": 3.32
+    },
+    "confluence_xml": {
+     "n": 176,
+     "full": 98.9,
+     "miss": 1.1,
+     "fa_per_doc": 13.5
+    },
+    "jira": {
+     "n": 220,
+     "full": 92.7,
+     "miss": 6.4,
+     "fa_per_doc": 1.59
+    },
+    "email_thread": {
+     "n": 440,
+     "full": 99.1,
+     "miss": 0.9,
+     "fa_per_doc": 1.77
+    },
+    "slack_export": {
+     "n": 294,
+     "full": 91.5,
+     "miss": 7.8,
+     "fa_per_doc": 4.41
+    },
+    "csv_table": {
+     "n": 1496,
+     "full": 98.9,
+     "miss": 0.7,
+     "fa_per_doc": 7.41
+    },
+    "log_file": {
+     "n": 380,
+     "full": 99.2,
+     "miss": 0.0,
+     "fa_per_doc": 30.45
+    },
+    "stack_trace": {
+     "n": 110,
+     "full": 98.2,
+     "miss": 1.8,
+     "fa_per_doc": 2.18
+    },
+    "contract": {
+     "n": 375,
+     "full": 96.5,
+     "miss": 3.2,
+     "fa_per_doc": 0.86
+    },
+    "invoice": {
+     "n": 167,
+     "full": 99.4,
+     "miss": 0.6,
+     "fa_per_doc": 9.36
+    },
+    "hr_doc": {
+     "n": 387,
+     "full": 99.0,
+     "miss": 1.0,
+     "fa_per_doc": 2.0
+    },
+    "sql_dump": {
+     "n": 1074,
+     "full": 98.8,
+     "miss": 1.0,
+     "fa_per_doc": 2.64
+    },
+    "config": {
+     "n": 110,
+     "full": 100.0,
+     "miss": 0.0,
+     "fa_per_doc": 3.59
+    },
+    "readme_md": {
+     "n": 132,
+     "full": 97.7,
+     "miss": 1.5,
+     "fa_per_doc": 3.59
+    },
+    "ocr_scan": {
+     "n": 198,
+     "full": 98.0,
+     "miss": 0.5,
+     "fa_per_doc": 0.64
+    },
+    "chat_transcript": {
+     "n": 264,
+     "full": 75.8,
+     "miss": 23.1,
+     "fa_per_doc": 6.23
+    }
+   }
+  },
+  "synth_heldout": {
+   "overall": {
+    "n": 16065,
+    "full": 95.4,
+    "partial": 0.3,
+    "miss": 4.3,
+    "fa_per_doc": 0.43,
+    "public_kept": 98.9
+   },
+   "types": {
+    "GIVENNAME": {
+     "n": 2774,
+     "full": 81.3,
+     "miss": 18.4
+    },
+    "SURNAME": {
+     "n": 2259,
+     "full": 96.7,
+     "miss": 3.2
+    },
+    "SOCIALNUM": {
+     "n": 1874,
+     "full": 99.9,
+     "miss": 0.1
+    },
+    "TELEPHONENUM": {
+     "n": 1551,
+     "full": 99.9,
+     "miss": 0.1
+    },
+    "CITY": {
+     "n": 1382,
+     "full": 99.9,
+     "miss": 0.0
+    },
+    "EMAIL": {
+     "n": 1106,
+     "full": 97.0,
+     "miss": 0.0
+    },
+    "STREET": {
+     "n": 1002,
+     "full": 99.7,
+     "miss": 0.0
+    },
+    "BUILDINGNUM": {
+     "n": 922,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "ZIPCODE": {
+     "n": 680,
+     "full": 99.1,
+     "miss": 0.9
+    },
+    "SECADDRESS": {
+     "n": 636,
+     "full": 99.2,
+     "miss": 0.0
+    },
+    "PASSPORTNUM": {
+     "n": 615,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "IDCARDNUM": {
+     "n": 477,
+     "full": 88.9,
+     "miss": 11.1
+    },
+    "STATE": {
+     "n": 387,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "IBAN": {
+     "n": 252,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "TAXNUM": {
+     "n": 148,
+     "full": 73.0,
+     "miss": 27.0
+    }
+   },
+   "formats": {}
+  },
+  "estner_test": {
+   "overall": {
+    "n": 1644,
+    "full": 55.8,
+    "partial": 0.9,
+    "miss": 43.4,
+    "fa_per_doc": 0.64,
+    "public_kept": 97.2
+   },
+   "types": {
+    "SURNAME": {
+     "n": 955,
+     "full": 51.9,
+     "miss": 47.7
+    },
+    "GIVENNAME": {
+     "n": 620,
+     "full": 63.9,
+     "miss": 35.0
+    },
+    "CITY": {
+     "n": 63,
+     "full": 39.7,
+     "miss": 55.6
+    },
+    "STREET": {
+     "n": 6,
+     "full": 0.0,
+     "miss": 83.3
+    }
+   },
+   "formats": {}
+  },
+  "gov_chats": {
+   "overall": {
+    "n": 82,
+    "full": 89.0,
+    "partial": 0.0,
+    "miss": 11.0,
+    "fa_per_doc": 0.26,
+    "public_kept": 100.0
+   },
+   "types": {
+    "GIVENNAME": {
+     "n": 18,
+     "full": 94.4,
+     "miss": 5.6
+    },
+    "SURNAME": {
+     "n": 18,
+     "full": 94.4,
+     "miss": 5.6
+    },
+    "TELEPHONENUM": {
+     "n": 11,
+     "full": 81.8,
+     "miss": 18.2
+    },
+    "SOCIALNUM": {
+     "n": 6,
+     "full": 83.3,
+     "miss": 16.7
+    },
+    "IDCARDNUM": {
+     "n": 6,
+     "full": 50.0,
+     "miss": 50.0
+    },
+    "EMAIL": {
+     "n": 5,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "CITY": {
+     "n": 4,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "IBAN": {
+     "n": 3,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "STREET": {
+     "n": 3,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "BUILDINGNUM": {
+     "n": 3,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "IP": {
+     "n": 3,
+     "full": 66.7,
+     "miss": 33.3
+    },
+    "URL": {
+     "n": 1,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "CREDITCARDNUMBER": {
+     "n": 1,
+     "full": 100.0,
+     "miss": 0.0
+    }
+   },
+   "formats": {}
+  },
+  "fairness": {
+   "overall": {
+    "n": 4500,
+    "full": 69.4,
+    "partial": 0.2,
+    "miss": 30.4,
+    "fa_per_doc": 0.23,
+    "public_kept": 0.0
+   },
+   "types": {
+    "GIVENNAME": {
+     "n": 2250,
+     "full": 70.4,
+     "miss": 29.2
+    },
+    "SURNAME": {
+     "n": 2250,
+     "full": 68.3,
+     "miss": 31.6
+    }
+   },
+   "formats": {}
+  }
+ },
+ "run4t05": {
+  "corp_suite": {
+   "overall": {
+    "n": 6773,
+    "full": 97.5,
+    "partial": 0.3,
+    "miss": 2.2,
+    "fa_per_doc": 6.11,
+    "public_kept": 82.6
+   },
+   "types": {
+    "GIVEN_NAME": {
+     "n": 1257,
+     "full": 91.0,
+     "miss": 8.7
+    },
+    "SURNAME": {
+     "n": 1121,
+     "full": 97.3,
+     "miss": 2.5
+    },
+    "PHONE": {
+     "n": 769,
+     "full": 99.1,
+     "miss": 0.9
+    },
+    "EMAIL": {
+     "n": 753,
+     "full": 98.3,
+     "miss": 0.0
+    },
+    "ISIKUKOOD": {
+     "n": 689,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "BANK_ACCOUNT": {
+     "n": 482,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "STREET_NAME": {
+     "n": 451,
+     "full": 99.8,
+     "miss": 0.0
+    },
+    "BUILDING_NUMBER": {
+     "n": 451,
+     "full": 99.3,
+     "miss": 0.4
+    },
+    "CITY": {
+     "n": 407,
+     "full": 99.8,
+     "miss": 0.2
+    },
+    "IP_ADDRESS": {
+     "n": 135,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "ZIP_CODE": {
+     "n": 110,
+     "full": 98.2,
+     "miss": 1.8
+    },
+    "GOVERNMENT_ID": {
+     "n": 66,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "SECONDARY_ADDRESS": {
+     "n": 38,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "PASSPORT": {
+     "n": 22,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "DRIVERS_LICENSE": {
+     "n": 22,
+     "full": 100.0,
+     "miss": 0.0
+    }
+   },
+   "formats": {
+    "openapi_yaml": {
+     "n": 264,
+     "full": 99.2,
+     "miss": 0.8,
+     "fa_per_doc": 1.5
+    },
+    "openapi_json": {
+     "n": 234,
+     "full": 99.6,
+     "miss": 0.4,
+     "fa_per_doc": 1.09
+    },
+    "meeting_notes": {
+     "n": 210,
+     "full": 91.4,
+     "miss": 8.6,
+     "fa_per_doc": 0.18
+    },
+    "messy_notes": {
+     "n": 242,
+     "full": 97.5,
+     "miss": 2.1,
+     "fa_per_doc": 3.77
+    },
+    "confluence_xml": {
+     "n": 176,
+     "full": 99.4,
+     "miss": 0.6,
+     "fa_per_doc": 14.14
+    },
+    "jira": {
+     "n": 220,
+     "full": 93.6,
+     "miss": 5.5,
+     "fa_per_doc": 2.14
+    },
+    "email_thread": {
+     "n": 440,
+     "full": 99.8,
+     "miss": 0.2,
+     "fa_per_doc": 2.73
+    },
+    "slack_export": {
+     "n": 294,
+     "full": 92.2,
+     "miss": 7.5,
+     "fa_per_doc": 4.77
+    },
+    "csv_table": {
+     "n": 1496,
+     "full": 99.1,
+     "miss": 0.5,
+     "fa_per_doc": 7.86
+    },
+    "log_file": {
+     "n": 380,
+     "full": 99.2,
+     "miss": 0.0,
+     "fa_per_doc": 37.91
+    },
+    "stack_trace": {
+     "n": 110,
+     "full": 99.1,
+     "miss": 0.9,
+     "fa_per_doc": 3.64
+    },
+    "contract": {
+     "n": 375,
+     "full": 97.6,
+     "miss": 2.4,
+     "fa_per_doc": 1.91
+    },
+    "invoice": {
+     "n": 167,
+     "full": 99.4,
+     "miss": 0.6,
+     "fa_per_doc": 12.27
+    },
+    "hr_doc": {
+     "n": 387,
+     "full": 99.5,
+     "miss": 0.5,
+     "fa_per_doc": 2.05
+    },
+    "sql_dump": {
+     "n": 1074,
+     "full": 99.1,
+     "miss": 0.8,
+     "fa_per_doc": 4.36
+    },
+    "config": {
+     "n": 110,
+     "full": 100.0,
+     "miss": 0.0,
+     "fa_per_doc": 3.86
+    },
+    "readme_md": {
+     "n": 132,
+     "full": 98.5,
+     "miss": 0.8,
+     "fa_per_doc": 4.27
+    },
+    "ocr_scan": {
+     "n": 198,
+     "full": 98.5,
+     "miss": 0.0,
+     "fa_per_doc": 0.91
+    },
+    "chat_transcript": {
+     "n": 264,
+     "full": 77.7,
+     "miss": 21.2,
+     "fa_per_doc": 6.68
+    }
+   }
+  },
+  "synth_heldout": {
+   "overall": {
+    "n": 16065,
+    "full": 96.1,
+    "partial": 0.3,
+    "miss": 3.5,
+    "fa_per_doc": 0.48,
+    "public_kept": 98.2
+   },
+   "types": {
+    "GIVENNAME": {
+     "n": 2774,
+     "full": 84.6,
+     "miss": 15.0
+    },
+    "SURNAME": {
+     "n": 2259,
+     "full": 97.8,
+     "miss": 2.2
+    },
+    "SOCIALNUM": {
+     "n": 1874,
+     "full": 99.9,
+     "miss": 0.1
+    },
+    "TELEPHONENUM": {
+     "n": 1551,
+     "full": 99.9,
+     "miss": 0.1
+    },
+    "CITY": {
+     "n": 1382,
+     "full": 99.9,
+     "miss": 0.0
+    },
+    "EMAIL": {
+     "n": 1106,
+     "full": 97.0,
+     "miss": 0.0
+    },
+    "STREET": {
+     "n": 1002,
+     "full": 99.7,
+     "miss": 0.0
+    },
+    "BUILDINGNUM": {
+     "n": 922,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "ZIPCODE": {
+     "n": 680,
+     "full": 99.1,
+     "miss": 0.9
+    },
+    "SECADDRESS": {
+     "n": 636,
+     "full": 99.2,
+     "miss": 0.0
+    },
+    "PASSPORTNUM": {
+     "n": 615,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "IDCARDNUM": {
+     "n": 477,
+     "full": 88.9,
+     "miss": 11.1
+    },
+    "STATE": {
+     "n": 387,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "IBAN": {
+     "n": 252,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "TAXNUM": {
+     "n": 148,
+     "full": 73.0,
+     "miss": 27.0
+    }
+   },
+   "formats": {}
+  },
+  "estner_test": {
+   "overall": {
+    "n": 1644,
+    "full": 66.8,
+    "partial": 0.9,
+    "miss": 32.2,
+    "fa_per_doc": 1.3,
+    "public_kept": 93.6
+   },
+   "types": {
+    "SURNAME": {
+     "n": 955,
+     "full": 63.7,
+     "miss": 35.8
+    },
+    "GIVENNAME": {
+     "n": 620,
+     "full": 73.1,
+     "miss": 26.5
+    },
+    "CITY": {
+     "n": 63,
+     "full": 60.3,
+     "miss": 31.7
+    },
+    "STREET": {
+     "n": 6,
+     "full": 0.0,
+     "miss": 66.7
+    }
+   },
+   "formats": {}
+  },
+  "gov_chats": {
+   "overall": {
+    "n": 82,
+    "full": 89.0,
+    "partial": 0.0,
+    "miss": 11.0,
+    "fa_per_doc": 0.35,
+    "public_kept": 100.0
+   },
+   "types": {
+    "GIVENNAME": {
+     "n": 18,
+     "full": 94.4,
+     "miss": 5.6
+    },
+    "SURNAME": {
+     "n": 18,
+     "full": 94.4,
+     "miss": 5.6
+    },
+    "TELEPHONENUM": {
+     "n": 11,
+     "full": 81.8,
+     "miss": 18.2
+    },
+    "SOCIALNUM": {
+     "n": 6,
+     "full": 83.3,
+     "miss": 16.7
+    },
+    "IDCARDNUM": {
+     "n": 6,
+     "full": 50.0,
+     "miss": 50.0
+    },
+    "EMAIL": {
+     "n": 5,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "CITY": {
+     "n": 4,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "IBAN": {
+     "n": 3,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "STREET": {
+     "n": 3,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "BUILDINGNUM": {
+     "n": 3,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "IP": {
+     "n": 3,
+     "full": 66.7,
+     "miss": 33.3
+    },
+    "URL": {
+     "n": 1,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "CREDITCARDNUMBER": {
+     "n": 1,
+     "full": 100.0,
+     "miss": 0.0
+    }
+   },
+   "formats": {}
+  },
+  "fairness": {
+   "overall": {
+    "n": 4500,
+    "full": 71.0,
+    "partial": 0.1,
+    "miss": 28.9,
+    "fa_per_doc": 0.26,
+    "public_kept": 0.0
+   },
+   "types": {
+    "GIVENNAME": {
+     "n": 2250,
+     "full": 71.8,
+     "miss": 28.0
+    },
+    "SURNAME": {
+     "n": 2250,
+     "full": 70.2,
+     "miss": 29.8
+    }
+   },
+   "formats": {}
+  }
+ },
+ "run4argmax": {
+  "corp_suite": {
+   "overall": {
+    "n": 6773,
+    "full": 97.4,
+    "partial": 0.3,
+    "miss": 2.3,
+    "fa_per_doc": 5.81,
+    "public_kept": 83.4
+   },
+   "types": {
+    "GIVEN_NAME": {
+     "n": 1257,
+     "full": 90.8,
+     "miss": 8.9
+    },
+    "SURNAME": {
+     "n": 1121,
+     "full": 97.0,
+     "miss": 2.9
+    },
+    "PHONE": {
+     "n": 769,
+     "full": 99.0,
+     "miss": 1.0
+    },
+    "EMAIL": {
+     "n": 753,
+     "full": 98.3,
+     "miss": 0.0
+    },
+    "ISIKUKOOD": {
+     "n": 689,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "BANK_ACCOUNT": {
+     "n": 482,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "STREET_NAME": {
+     "n": 451,
+     "full": 99.8,
+     "miss": 0.0
+    },
+    "BUILDING_NUMBER": {
+     "n": 451,
+     "full": 99.3,
+     "miss": 0.4
+    },
+    "CITY": {
+     "n": 407,
+     "full": 99.8,
+     "miss": 0.2
+    },
+    "IP_ADDRESS": {
+     "n": 135,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "ZIP_CODE": {
+     "n": 110,
+     "full": 98.2,
+     "miss": 1.8
+    },
+    "GOVERNMENT_ID": {
+     "n": 66,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "SECONDARY_ADDRESS": {
+     "n": 38,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "PASSPORT": {
+     "n": 22,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "DRIVERS_LICENSE": {
+     "n": 22,
+     "full": 100.0,
+     "miss": 0.0
+    }
+   },
+   "formats": {
+    "openapi_yaml": {
+     "n": 264,
+     "full": 98.9,
+     "miss": 1.1,
+     "fa_per_doc": 1.41
+    },
+    "openapi_json": {
+     "n": 234,
+     "full": 99.6,
+     "miss": 0.4,
+     "fa_per_doc": 1.0
+    },
+    "meeting_notes": {
+     "n": 210,
+     "full": 89.5,
+     "miss": 10.5,
+     "fa_per_doc": 0.18
+    },
+    "messy_notes": {
+     "n": 242,
+     "full": 97.5,
+     "miss": 2.1,
+     "fa_per_doc": 3.77
+    },
+    "confluence_xml": {
+     "n": 176,
+     "full": 99.4,
+     "miss": 0.6,
+     "fa_per_doc": 14.0
+    },
+    "jira": {
+     "n": 220,
+     "full": 93.6,
+     "miss": 5.5,
+     "fa_per_doc": 2.0
+    },
+    "email_thread": {
+     "n": 440,
+     "full": 99.5,
+     "miss": 0.5,
+     "fa_per_doc": 2.41
+    },
+    "slack_export": {
+     "n": 294,
+     "full": 92.2,
+     "miss": 7.5,
+     "fa_per_doc": 4.59
+    },
+    "csv_table": {
+     "n": 1496,
+     "full": 99.1,
+     "miss": 0.5,
+     "fa_per_doc": 7.68
+    },
+    "log_file": {
+     "n": 380,
+     "full": 99.2,
+     "miss": 0.0,
+     "fa_per_doc": 35.5
+    },
+    "stack_trace": {
+     "n": 110,
+     "full": 99.1,
+     "miss": 0.9,
+     "fa_per_doc": 2.86
+    },
+    "contract": {
+     "n": 375,
+     "full": 97.6,
+     "miss": 2.4,
+     "fa_per_doc": 1.73
+    },
+    "invoice": {
+     "n": 167,
+     "full": 99.4,
+     "miss": 0.6,
+     "fa_per_doc": 11.86
+    },
+    "hr_doc": {
+     "n": 387,
+     "full": 99.2,
+     "miss": 0.8,
+     "fa_per_doc": 2.0
+    },
+    "sql_dump": {
+     "n": 1074,
+     "full": 99.1,
+     "miss": 0.8,
+     "fa_per_doc": 4.05
+    },
+    "config": {
+     "n": 110,
+     "full": 100.0,
+     "miss": 0.0,
+     "fa_per_doc": 3.73
+    },
+    "readme_md": {
+     "n": 132,
+     "full": 97.7,
+     "miss": 1.5,
+     "fa_per_doc": 4.23
+    },
+    "ocr_scan": {
+     "n": 198,
+     "full": 98.5,
+     "miss": 0.0,
+     "fa_per_doc": 0.77
+    },
+    "chat_transcript": {
+     "n": 264,
+     "full": 77.7,
+     "miss": 21.2,
+     "fa_per_doc": 6.64
+    }
+   }
+  },
+  "synth_heldout": {
+   "overall": {
+    "n": 16065,
+    "full": 96.1,
+    "partial": 0.3,
+    "miss": 3.6,
+    "fa_per_doc": 0.47,
+    "public_kept": 98.2
+   },
+   "types": {
+    "GIVENNAME": {
+     "n": 2774,
+     "full": 84.3,
+     "miss": 15.4
+    },
+    "SURNAME": {
+     "n": 2259,
+     "full": 97.7,
+     "miss": 2.3
+    },
+    "SOCIALNUM": {
+     "n": 1874,
+     "full": 99.9,
+     "miss": 0.1
+    },
+    "TELEPHONENUM": {
+     "n": 1551,
+     "full": 99.9,
+     "miss": 0.1
+    },
+    "CITY": {
+     "n": 1382,
+     "full": 99.9,
+     "miss": 0.0
+    },
+    "EMAIL": {
+     "n": 1106,
+     "full": 97.0,
+     "miss": 0.0
+    },
+    "STREET": {
+     "n": 1002,
+     "full": 99.7,
+     "miss": 0.0
+    },
+    "BUILDINGNUM": {
+     "n": 922,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "ZIPCODE": {
+     "n": 680,
+     "full": 99.1,
+     "miss": 0.9
+    },
+    "SECADDRESS": {
+     "n": 636,
+     "full": 99.2,
+     "miss": 0.0
+    },
+    "PASSPORTNUM": {
+     "n": 615,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "IDCARDNUM": {
+     "n": 477,
+     "full": 88.9,
+     "miss": 11.1
+    },
+    "STATE": {
+     "n": 387,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "IBAN": {
+     "n": 252,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "TAXNUM": {
+     "n": 148,
+     "full": 73.0,
+     "miss": 27.0
+    }
+   },
+   "formats": {}
+  },
+  "estner_test": {
+   "overall": {
+    "n": 1644,
+    "full": 65.4,
+    "partial": 0.6,
+    "miss": 34.0,
+    "fa_per_doc": 1.23,
+    "public_kept": 94.0
+   },
+   "types": {
+    "SURNAME": {
+     "n": 955,
+     "full": 62.1,
+     "miss": 37.6
+    },
+    "GIVENNAME": {
+     "n": 620,
+     "full": 71.6,
+     "miss": 28.1
+    },
+    "CITY": {
+     "n": 63,
+     "full": 60.3,
+     "miss": 33.3
+    },
+    "STREET": {
+     "n": 6,
+     "full": 0.0,
+     "miss": 83.3
+    }
+   },
+   "formats": {}
+  },
+  "gov_chats": {
+   "overall": {
+    "n": 82,
+    "full": 89.0,
+    "partial": 0.0,
+    "miss": 11.0,
+    "fa_per_doc": 0.32,
+    "public_kept": 100.0
+   },
+   "types": {
+    "GIVENNAME": {
+     "n": 18,
+     "full": 94.4,
+     "miss": 5.6
+    },
+    "SURNAME": {
+     "n": 18,
+     "full": 94.4,
+     "miss": 5.6
+    },
+    "TELEPHONENUM": {
+     "n": 11,
+     "full": 81.8,
+     "miss": 18.2
+    },
+    "SOCIALNUM": {
+     "n": 6,
+     "full": 83.3,
+     "miss": 16.7
+    },
+    "IDCARDNUM": {
+     "n": 6,
+     "full": 50.0,
+     "miss": 50.0
+    },
+    "EMAIL": {
+     "n": 5,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "CITY": {
+     "n": 4,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "IBAN": {
+     "n": 3,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "STREET": {
+     "n": 3,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "BUILDINGNUM": {
+     "n": 3,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "IP": {
+     "n": 3,
+     "full": 66.7,
+     "miss": 33.3
+    },
+    "URL": {
+     "n": 1,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "CREDITCARDNUMBER": {
+     "n": 1,
+     "full": 100.0,
+     "miss": 0.0
+    }
+   },
+   "formats": {}
+  },
+  "fairness": {
+   "overall": {
+    "n": 4500,
+    "full": 70.5,
+    "partial": 0.2,
+    "miss": 29.4,
+    "fa_per_doc": 0.26,
+    "public_kept": 0.0
+   },
+   "types": {
+    "GIVENNAME": {
+     "n": 2250,
+     "full": 71.5,
+     "miss": 28.2
+    },
+    "SURNAME": {
+     "n": 2250,
+     "full": 69.5,
+     "miss": 30.5
+    }
+   },
+   "formats": {}
+  }
+ },
+ "presidio": {
+  "corp_suite": {
+   "overall": {
+    "n": 6773,
+    "full": 56.6,
+    "partial": 3.4,
+    "miss": 40.0,
+    "fa_per_doc": 4.49,
+    "public_kept": 83.6
+   },
+   "types": {
+    "GIVEN_NAME": {
+     "n": 1257,
+     "full": 68.5,
+     "miss": 31.5
+    },
+    "SURNAME": {
+     "n": 1121,
+     "full": 67.9,
+     "miss": 32.1
+    },
+    "PHONE": {
+     "n": 769,
+     "full": 76.5,
+     "miss": 23.4
+    },
+    "EMAIL": {
+     "n": 753,
+     "full": 99.7,
+     "miss": 0.1
+    },
+    "ISIKUKOOD": {
+     "n": 689,
+     "full": 4.8,
+     "miss": 95.2
+    },
+    "BANK_ACCOUNT": {
+     "n": 482,
+     "full": 99.6,
+     "miss": 0.4
+    },
+    "STREET_NAME": {
+     "n": 451,
+     "full": 0.0,
+     "miss": 49.9
+    },
+    "BUILDING_NUMBER": {
+     "n": 451,
+     "full": 0.7,
+     "miss": 99.3
+    },
+    "CITY": {
+     "n": 407,
+     "full": 50.1,
+     "miss": 49.9
+    },
+    "IP_ADDRESS": {
+     "n": 135,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "ZIP_CODE": {
+     "n": 110,
+     "full": 10.0,
+     "miss": 90.0
+    },
+    "GOVERNMENT_ID": {
+     "n": 66,
+     "full": 1.5,
+     "miss": 98.5
+    },
+    "SECONDARY_ADDRESS": {
+     "n": 38,
+     "full": 0.0,
+     "miss": 100.0
+    },
+    "PASSPORT": {
+     "n": 22,
+     "full": 36.4,
+     "miss": 63.6
+    },
+    "DRIVERS_LICENSE": {
+     "n": 22,
+     "full": 0.0,
+     "miss": 100.0
+    }
+   },
+   "formats": {
+    "openapi_yaml": {
+     "n": 264,
+     "full": 49.6,
+     "miss": 43.2,
+     "fa_per_doc": 1.36
+    },
+    "openapi_json": {
+     "n": 234,
+     "full": 64.5,
+     "miss": 35.5,
+     "fa_per_doc": 1.95
+    },
+    "meeting_notes": {
+     "n": 210,
+     "full": 86.7,
+     "miss": 13.3,
+     "fa_per_doc": 2.0
+    },
+    "messy_notes": {
+     "n": 242,
+     "full": 36.4,
+     "miss": 63.6,
+     "fa_per_doc": 1.23
+    },
+    "confluence_xml": {
+     "n": 176,
+     "full": 63.1,
+     "miss": 36.4,
+     "fa_per_doc": 1.55
+    },
+    "jira": {
+     "n": 220,
+     "full": 81.4,
+     "miss": 18.6,
+     "fa_per_doc": 2.36
+    },
+    "email_thread": {
+     "n": 440,
+     "full": 59.8,
+     "miss": 31.1,
+     "fa_per_doc": 4.05
+    },
+    "slack_export": {
+     "n": 294,
+     "full": 70.1,
+     "miss": 29.9,
+     "fa_per_doc": 0.68
+    },
+    "csv_table": {
+     "n": 1496,
+     "full": 37.1,
+     "miss": 60.0,
+     "fa_per_doc": 8.68
+    },
+    "log_file": {
+     "n": 380,
+     "full": 76.6,
+     "miss": 23.4,
+     "fa_per_doc": 0.5
+    },
+    "stack_trace": {
+     "n": 110,
+     "full": 38.2,
+     "miss": 41.8,
+     "fa_per_doc": 9.18
+    },
+    "contract": {
+     "n": 375,
+     "full": 60.3,
+     "miss": 33.9,
+     "fa_per_doc": 16.36
+    },
+    "invoice": {
+     "n": 167,
+     "full": 50.3,
+     "miss": 37.1,
+     "fa_per_doc": 4.55
+    },
+    "hr_doc": {
+     "n": 387,
+     "full": 48.6,
+     "miss": 47.3,
+     "fa_per_doc": 1.27
+    },
+    "sql_dump": {
+     "n": 1074,
+     "full": 71.7,
+     "miss": 28.3,
+     "fa_per_doc": 17.45
+    },
+    "config": {
+     "n": 110,
+     "full": 89.1,
+     "miss": 10.9,
+     "fa_per_doc": 6.0
+    },
+    "readme_md": {
+     "n": 132,
+     "full": 49.2,
+     "miss": 50.8,
+     "fa_per_doc": 2.41
+    },
+    "ocr_scan": {
+     "n": 198,
+     "full": 39.4,
+     "miss": 60.1,
+     "fa_per_doc": 1.64
+    },
+    "chat_transcript": {
+     "n": 264,
+     "full": 48.5,
+     "miss": 35.2,
+     "fa_per_doc": 2.14
+    }
+   }
+  },
+  "synth_heldout": {
+   "overall": {
+    "n": 16065,
+    "full": 46.1,
+    "partial": 7.0,
+    "miss": 46.9,
+    "fa_per_doc": 0.18,
+    "public_kept": 70.0
+   },
+   "types": {
+    "GIVENNAME": {
+     "n": 2774,
+     "full": 75.3,
+     "miss": 24.4
+    },
+    "SURNAME": {
+     "n": 2259,
+     "full": 75.0,
+     "miss": 25.0
+    },
+    "SOCIALNUM": {
+     "n": 1874,
+     "full": 4.6,
+     "miss": 95.4
+    },
+    "TELEPHONENUM": {
+     "n": 1551,
+     "full": 72.3,
+     "miss": 25.6
+    },
+    "CITY": {
+     "n": 1382,
+     "full": 67.2,
+     "miss": 19.2
+    },
+    "EMAIL": {
+     "n": 1106,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "STREET": {
+     "n": 1002,
+     "full": 1.1,
+     "miss": 24.6
+    },
+    "BUILDINGNUM": {
+     "n": 922,
+     "full": 0.4,
+     "miss": 99.6
+    },
+    "ZIPCODE": {
+     "n": 680,
+     "full": 1.0,
+     "miss": 99.0
+    },
+    "SECADDRESS": {
+     "n": 636,
+     "full": 0.5,
+     "miss": 99.5
+    },
+    "PASSPORTNUM": {
+     "n": 615,
+     "full": 3.1,
+     "miss": 96.9
+    },
+    "IDCARDNUM": {
+     "n": 477,
+     "full": 0.4,
+     "miss": 99.6
+    },
+    "STATE": {
+     "n": 387,
+     "full": 37.0,
+     "miss": 25.1
+    },
+    "IBAN": {
+     "n": 252,
+     "full": 78.6,
+     "miss": 19.8
+    },
+    "TAXNUM": {
+     "n": 148,
+     "full": 0.0,
+     "miss": 100.0
+    }
+   },
+   "formats": {}
+  },
+  "estner_test": {
+   "overall": {
+    "n": 1644,
+    "full": 76.6,
+    "partial": 0.5,
+    "miss": 22.8,
+    "fa_per_doc": 4.71,
+    "public_kept": 67.8
+   },
+   "types": {
+    "SURNAME": {
+     "n": 955,
+     "full": 75.7,
+     "miss": 24.3
+    },
+    "GIVENNAME": {
+     "n": 620,
+     "full": 78.5,
+     "miss": 21.3
+    },
+    "CITY": {
+     "n": 63,
+     "full": 79.4,
+     "miss": 15.9
+    },
+    "STREET": {
+     "n": 6,
+     "full": 0.0,
+     "miss": 16.7
+    }
+   },
+   "formats": {}
+  },
+  "gov_chats": {
+   "overall": {
+    "n": 82,
+    "full": 59.8,
+    "partial": 2.4,
+    "miss": 37.8,
+    "fa_per_doc": 0.71,
+    "public_kept": 69.8
+   },
+   "types": {
+    "GIVENNAME": {
+     "n": 18,
+     "full": 83.3,
+     "miss": 16.7
+    },
+    "SURNAME": {
+     "n": 18,
+     "full": 77.8,
+     "miss": 22.2
+    },
+    "TELEPHONENUM": {
+     "n": 11,
+     "full": 45.5,
+     "miss": 54.5
+    },
+    "SOCIALNUM": {
+     "n": 6,
+     "full": 0.0,
+     "miss": 100.0
+    },
+    "IDCARDNUM": {
+     "n": 6,
+     "full": 0.0,
+     "miss": 100.0
+    },
+    "EMAIL": {
+     "n": 5,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "CITY": {
+     "n": 4,
+     "full": 50.0,
+     "miss": 50.0
+    },
+    "IBAN": {
+     "n": 3,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "STREET": {
+     "n": 3,
+     "full": 0.0,
+     "miss": 33.3
+    },
+    "BUILDINGNUM": {
+     "n": 3,
+     "full": 0.0,
+     "miss": 100.0
+    },
+    "IP": {
+     "n": 3,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "URL": {
+     "n": 1,
+     "full": 100.0,
+     "miss": 0.0
+    },
+    "CREDITCARDNUMBER": {
+     "n": 1,
+     "full": 100.0,
+     "miss": 0.0
+    }
+   },
+   "formats": {}
+  },
+  "fairness": {
+   "overall": {
+    "n": 4500,
+    "full": 60.3,
+    "partial": 0.1,
+    "miss": 39.6,
+    "fa_per_doc": 0.07,
+    "public_kept": 0.0
+   },
+   "types": {
+    "GIVENNAME": {
+     "n": 2250,
+     "full": 63.8,
+     "miss": 36.0
+    },
+    "SURNAME": {
+     "n": 2250,
+     "full": 56.8,
+     "miss": 43.2
+    }
+   },
+   "formats": {}
+  }
+ }
+}
