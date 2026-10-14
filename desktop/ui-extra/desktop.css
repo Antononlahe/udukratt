@@ -1,0 +1,3 @@
+.files{display:flex;gap:.5rem;align-items:center;margin:.5rem 0;flex-wrap:wrap}
+#fname{color:#666;font-size:.9em}
+textarea.drag{outline:3px dashed #4a8;}

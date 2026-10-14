@@ -11,7 +11,7 @@ work3/*
 work3/corp_suite/predictions.json
 work3/corp_suite/errors.json
 work4/
-work*/
+/work*/
 !work3/
 *.onnx
 *.wasm
@@ -19,9 +19,12 @@ work*/
 *.bin
 *.pt
 node_modules/
-webapp/model/
+
 webapp/vendor/
 webapp/test/ref.json
 webapp/test/screenshot.png
 webapp/.vercel/
 .vercel/
+!webapp/model/
+webapp/model/*
+!webapp/model/vocab.json

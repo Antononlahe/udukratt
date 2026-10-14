@@ -44,6 +44,17 @@ Accuracy is mixed. Udukratt catches more PII in corporate and structured text (9
 
 Details: [BENCHMARKS.md](BENCHMARKS.md). Side-by-side examples: [SHOWCASE.md](SHOWCASE.md).
 
+## Desktop app (v0.2)
+
+There are offline builds for Windows, macOS and Linux on the [v0.2 release](https://github.com/Antononlahe/udukratt/releases/tag/v0.2). They have the same UI and model as the demo, with no network access. You can open or drop a file, redact it, and save the redacted copy. Source and build notes: [desktop/](desktop/).
+
+The builds are **unsigned**:
+- **Windows:** SmartScreen will warn "Windows protected your PC". Click *More info → Run anyway*.
+- **macOS:** Gatekeeper will say the app "can't be opened" or "is damaged". Right-click → *Open*, or run `xattr -dr com.apple.quarantine /Applications/Udukratt.app`.
+- **Linux:** `chmod +x Udukratt_*.AppImage`. If FUSE is missing, run it with `--appimage-extract-and-run`.
+
+Sizes: SIZES_PLACEHOLDER
+
 ## Limitations
 
 - Names in real prose are the weak spot: about a third of names in news text are missed.

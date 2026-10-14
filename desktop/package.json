@@ -1,0 +1,13 @@
+{
+  "name": "udukratt-desktop",
+  "version": "0.2.0",
+  "private": true,
+  "scripts": {
+    "prepare-ui": "node scripts/prepare-ui.mjs",
+    "tauri": "tauri"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2",
+    "onnxruntime-web": "^1.30.0"
+  }
+}

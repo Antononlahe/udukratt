@@ -1,0 +1,50 @@
+name: desktop-release
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: ubuntu-22.04
+            args: "--bundles appimage"
+          - platform: windows-latest
+            args: "--bundles nsis"
+          - platform: macos-latest
+            args: "--target universal-apple-darwin --bundles app,dmg"
+    runs-on: ${{ matrix.platform }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Linux deps
+        if: matrix.platform == 'ubuntu-22.04'
+        run: sudo apt-get update && sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.platform == 'macos-latest' && 'aarch64-apple-darwin,x86_64-apple-darwin' || '' }}
+      - uses: swatinem/rust-cache@v2
+        with: { workspaces: "desktop/src-tauri -> target" }
+      - name: Fetch model (v0.1 release asset) and verify checksum
+        shell: bash
+        env: { GH_TOKEN: "${{ github.token }}" }
+        run: |
+          gh release download v0.1 -p model_q4.onnx -D webapp/model
+          echo "00404c3899c98964f27346b518b04670720da12b4c82e9b08c22dc03641e0990  webapp/model/model_q4.onnx" | shasum -a 256 -c -
+      - run: npm ci
+        working-directory: desktop
+      - uses: tauri-apps/tauri-action@v0
+        env: { GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}" }
+        with:
+          projectPath: desktop
+          tagName: ${{ github.ref_type == 'tag' && github.ref_name || 'v0.2' }}
+          releaseName: "Udukratt ${{ github.ref_type == 'tag' && github.ref_name || 'v0.2' }} (desktop)"
+          releaseBody: "Offline desktop app (Windows, macOS universal, Linux AppImage). Unsigned builds: see README for SmartScreen / Gatekeeper notes. Experimental; do not rely on it for real redaction."
+          releaseDraft: false
+          prerelease: false
+          args: ${{ matrix.args }}
