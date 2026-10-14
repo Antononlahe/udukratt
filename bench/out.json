@@ -1,0 +1,44 @@
+[
+ {
+  "title": "Code-switching chat (et/ru/en)",
+  "input": "привет, kas sa saatsid selle arve juba? Михаил Петров ütles, et IBAN EE382200221020145685 on vale. pls check w/ tiina kask asap, her phone +372 5123 4567. спасибо!",
+  "udukratt": "привет, kas sa saatsid selle arve juba? [GIVEN_NAME] [SURNAME] ütles, et IBAN [BANK_ACCOUNT] on vale. pls check w/ [GIVEN_NAME] [SURNAME] [SURNAME], her phone [PHONE]. спасибо!",
+  "buerokratt": "привет, kas sa saatsid selle arve juba? [ISIK] ütles, et IBAN [PANGAKONTO] on vale. pls check w/ [ISIK] asap, her phone [TELEFON]. спасибо!"
+ },
+ {
+  "title": "Confluence/XML blob",
+  "input": "<ac:structured-macro ac:name=\"info\"><ac:rich-text-body><p>Klient: <strong>Jaanus Tamm</strong> (isikukood 38001085718)</p><table><tr><td>IBAN</td><td>EE471000001020145685</td></tr><tr><td>page-id</td><td>a3f1c2e9-4b7d-4e2a-9c1f-0d5e6b7a8c9f</td></tr></table></ac:rich-text-body></ac:structured-macro>",
+  "udukratt": "<ac:structured-macro ac:name=\"info\"><ac:[GIVEN_NAME]><p>Klient: <strong>[GIVEN_NAME] [SURNAME]</strong> (isikukood [ISIKUKOOD])</p><table><tr><td>IBAN</td><td>[BANK_ACCOUNT]</td></tr><tr><td>page-id</td><td>a3f1c2e9-4b7d-4e2a-9c1f-0d5e6b7a8c9f</td></tr></table></ac:[SURNAME]-[SURNAME]></ac:structured-macro>",
+  "buerokratt": "<ac:structured-macro ac:name=\"info\"><ac:rich-text-body><p>Klient: <strong>Jaanus [ISIK]> (isikukood [ISIKUKOOD])</p><table><tr><td>IBAN</td><td>[PANGAKONTO]</td></tr><tr><td>page-id</td><td>a3f1c2e9-4b7d-4e2a-9c1f-0d5e6b7a8c9f</td></tr></table></ac:rich-text-body></ac:structured-macro>"
+ },
+ {
+  "title": "YAML payload inside an email",
+  "input": "From: support@naidis-pood.ee\nSubject: Re: tellimus JIRA-4821\n\nTere, allpool andmed:\n\n```yaml\ncustomer:\n  name: Kadri Lepik\n  id_code: 49403136526\n  email: kadri.lepik@example.ee\n  address: Pärnu mnt 15-7, Tallinn\norder_ref: ORD-2026-000917\nbuild: v2.14.3\n```\nParimate soovidega,\nMart",
+  "udukratt": "From: [EMAIL]\nSubject: Re: [STREET_NAME] [SURNAME]-4821\n\nTere, allpool andmed:\n\n```yaml\ncustomer:\n  name: [GIVEN_NAME] [SURNAME]\n  id_code: [ISIKUKOOD]\n  email: [EMAIL]\n  address: [STREET_NAME] [BUILDING_NUMBER]-[SECONDARY_ADDRESS], [CITY]\norder_ref: ORD-2026-000917\nbuild: v2.14.3\n```\n[GIVEN_NAME] [SURNAME],\n[GIVEN_NAME]",
+  "buerokratt": "From: [E-POST]\nSubject: Re: tellimus JIRA-4821\n\nTere, allpool andmed:\n\n```yaml\ncustomer:\n  name: [ISIK]\n  id_code: [ISIKUKOOD]\n  email: [E-POST]\n  address: [ASUKOHT], [GPE]\n[GPE]: ORD-2026-000917\nbuild: v2.14.3\n```\nParimate soovidega,\nMart"
+ },
+ {
+  "title": "OCR noise",
+  "input": "AVALDUS\nNimi: Rein0 Saarna\nIsikuk0od: 3900l2l0274\nAadress : Tartu mnt 4l, Tal1inn\nTel. 5l2 34567\nKuupäev 12.O3.2026",
+  "udukratt": "AVALDUS\nNimi: [GIVEN_NAME] [SURNAME]\nIsikuk0od: [GOVERNMENT_ID]\nAadress : [STREET_NAME] [BUILDING_NUMBER], [CITY]\nTel. [PHONE]\nKuupäev 12.O3.2026",
+  "buerokratt": "AVALDUS\nNimi: [ISIK]\n[ISIK]: 3900l2l0274\nAadress : [ASUKOHT], [GPE]\n[GPE]. 5l2 34567\nKuupäev 12.O3.2026"
+ },
+ {
+  "title": "Lowercase names + look-alike ids",
+  "input": "ticket SUP-10233 avas peeter mägi, commit 9f86d081884c7d659a2feaa0c55ad015a3bf4f1b, uuid 550e8400-e29b-41d4-a716-446655440000. peeter mägi palus helistada ka liisa oksale.",
+  "udukratt": "ticket SUP-10233 avas [GIVEN_NAME] [SURNAME], commit 9f86d081884c7d659a2feaa0c55ad015a3bf4f1b, uuid 550e8400-e29b-41d4-a716-446655440000. peeter [SURNAME] palus helistada ka [GIVEN_NAME] [SURNAME].",
+  "buerokratt": "ticket [ORGANISATSIOON] avas [ASUKOHT], commit 9f86d081884c7d659a2feaa0c55ad015a3bf4f1b, uuid 550e8400-e29b-41d4-a716-446655440000. [ASUKOHT] palus [GPE] ka liisa oksale."
+ },
+ {
+  "title": "Surname-only references",
+  "input": "Koosolekul olid Kask, Tamm ja Õunapuu. Kask lubas Tammele saata lepingu, Õunapuu vastutab eelarve eest. Hr Kuusk puudus.",
+  "udukratt": "Koosolekul olid Kask, Tamm ja Õunapuu. Kask lubas Tammele saata lepingu, Õunapuu vastutab eelarve eest. Hr Kuusk puudus.",
+  "buerokratt": "Koosolekul olid Kask, Tamm ja [ISIK]. Kask lubas [ISIK] saata lepingu, [ISIK] vastutab eelarve eest. Hr [ISIK] puudus."
+ },
+ {
+  "title": "Russian name in Estonian text with ID document",
+  "input": "Taotleja Ольга Смирнова (Olga Smirnova), dokumendi nr AB0123456, sünd 1985, elukoht Narva, Kreenholmi 12-3. Kontakt olga.smirnova@mail.ee.",
+  "udukratt": "Taotleja [GIVEN_NAME] [SURNAME] ([GIVEN_NAME] [SURNAME]), dokumendi nr [GOVERNMENT_ID], sünd [SECONDARY_ADDRESS], elukoht [CITY], [SURNAME] [BUILDING_NUMBER]-[SECONDARY_ADDRESS]. Kontakt [EMAIL].",
+  "buerokratt": "Taotleja [ISIK] (Olga [ISIK]), dokumendi nr [EST-DOKUMENDINR], sünd 1985, elukoht [GPE], [ASUKOHT]. Kontakt [E-POST]."
+ }
+]

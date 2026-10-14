@@ -14,7 +14,7 @@ _cache = {}
 def load(mdir):
     if mdir not in _cache:
         m = ROOT / mdir
-        so = ort.SessionOptions(); so.intra_op_num_threads = 4
+        so = ort.SessionOptions(); so.intra_op_num_threads = int(__import__("os").environ.get("UK_THREADS", "4")); so.inter_op_num_threads = 1
         _cache[mdir] = (Tokenizer.from_file(str(m / "tokenizer.json")), ort.InferenceSession(str(m / "onnx/model_q4.onnx"), so))
     return _cache[mdir]
 

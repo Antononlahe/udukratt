@@ -36,6 +36,14 @@ Highlights on corp_suite: isikukood and IBAN 100%, street, house, city and postc
 Presidio has no isikukood or Estonian address support (isikukood 5%, streets 0%), but finds more names in news prose.
 Full numbers per suite, type and format are in `results/scores.json`. The threshold sweep on the dev split is in `results/tau.json`.
 
+## Benchmarks vs Bürokratt
+
+On the same box and texts, Udukratt runs **~7× faster** than [Bürokratt Presidio-Anonymizer](https://github.com/buerokratt/Presidio-Anonymizer): 38 ms vs 256 ms median per document, 23 vs 3 docs/s. Its model is ~10 MB, against 2.2 GB.
+
+Accuracy is mixed. Udukratt catches more PII in corporate and structured text (97.5% vs 73.5%). Bürokratt is better on news (94.8% vs 66.8%), chats and varied names.
+
+Details: [BENCHMARKS.md](BENCHMARKS.md). Side-by-side examples: [SHOWCASE.md](SHOWCASE.md).
+
 ## Limitations
 
 - Names in real prose are the weak spot: about a third of names in news text are missed.
