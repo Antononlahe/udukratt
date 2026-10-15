@@ -4,7 +4,7 @@ import { WordPiece, redact, maskText } from "./rampart.js";
 ort.env.wasm.wasmPaths = new URL("./vendor/", import.meta.url).href;
 ort.env.wasm.numThreads = 1;
 
-const TAU = 0.5;
+const TAU = 0.45;
 
 const EXAMPLES = {
   "Avaldus": "Tere! Minu nimi on Mari Tamm, isikukood 49403136526. Elan Tartus, Riia tn 15-7, 51004. Palun kandke toetus kontole EE382200221020145685.",
