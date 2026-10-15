@@ -6,7 +6,7 @@ deterministic checksum layer, trained only on public, pseudonymised and syntheti
 
 **Live demo:** https://webapp-pi-two-63.vercel.app (fully client-side, no text leaves the browser)
 
-**Status:** experimental research model (v0.1). Do not rely on it as the only safeguard for real redaction.
+**Status:** experimental research model (v0.2). Do not rely on it as the only safeguard for real redaction.
 
 ## What it catches
 
@@ -17,36 +17,36 @@ deterministic checksum layer, trained only on public, pseudonymised and syntheti
 | Model | first names, surnames, phones, street, house, flat, city, county, postcode, plates and ID cards, passports, driving licences, tax ids |
 
 Cyrillic is transliterated with the Estonian standard before folding, so Russian and Ukrainian names in either script reach the model the same way.
-Model spans are snapped to whole words, and a confidence threshold (0.5 in the demo) decides when a token counts as PII.
+Model spans are snapped to whole words, and a confidence threshold (0.45 in the demo and desktop app, chosen on dev data only) decides when a token counts as PII.
 
-## Results (v0.1, model "run 4")
+## Results (v0.2)
 
-Share of PII values fully redacted, end to end (rules plus model), with false alarms per document. Presidio is
-`presidio-analyzer` 2.2.364 with spaCy `xx_ent_wiki_sm` and its pattern recognizers (email, phone EE, IBAN, card, IP, URL), configured for Estonian.
+Share of PII values fully redacted, end to end (rules plus model), with false alarms per document. v0.2 is improvement pass 2 at threshold 0.45.
+It adds all EstNER training splits, names in all 14 Estonian cases, surname-only references, bylines and harder log/Confluence/CSV negatives.
+Presidio is `presidio-analyzer` 2.2.364 with spaCy `xx_ent_wiki_sm` and Estonian-configured pattern recognizers.
 
-| Suite | Docs | Udukratt v0.1 | Previous model (run 3) | Presidio |
-|---|---|---|---|---|
-| corp_suite: 418 fake corporate docs, 19 formats | 418 | 97.5% caught, 6.1 false alarms per doc | 82.3%, 4.3 | 56.6%, 4.5 |
-| Held-out synthetic chats (unseen names, streets, templates) | 3000 | 96.1%, 0.5 | 95.6%, 0.5 | 46.1%, 0.2 |
-| EstNER test (real Estonian news, names and places) | 452 | 66.8%, 1.3 | 60.0%, 1.1 | 76.6%, 4.7 |
-| Bürokratt gov chat cases | 31 | 89.0%, 0.35 | 75.6%, 0.13 | 59.8%, 0.7 |
-| Fairness (names from 18 traditions) | 2250 | 71.0% | 69.6% | 60.3% |
+| Suite | Docs | Udukratt v0.2 | Udukratt v0.1 | Bürokratt (PII-only) | Presidio |
+|---|---|---|---|---|---|
+| corp_suite: fake corporate docs, 19 formats | 418 | **97.6%**, 3.3 false alarms per doc | 97.5%, 6.1 | 72.5%, 2.3 | 56.6%, 4.5 |
+| Held-out synthetic chats | 3000 | **97.2%**, 0.5 | 96.1%, 0.5 | 82.8%, 0.1 | 46.1%, 0.2 |
+| EstNER test (real Estonian news) | 452 | 76.3%, 1.3 | 66.8%, 1.3 | **90.7%**, 1.7 | 76.6%, 4.7 |
+| Bürokratt gov chat cases | 31 | 91.5%, 0.2 | 89.0%, 0.35 | **100%**, 0.0 | 59.8%, 0.7 |
+| Fairness (names from 18 traditions) | 2250 | **99.1%** | 71.0% | 80.3% | 60.3% |
 
-Highlights on corp_suite: isikukood and IBAN 100%, street, house, city and postcode 98 to 100%, surnames 96%, first names 89%.
-Presidio has no isikukood or Estonian address support (isikukood 5%, streets 0%), but finds more names in news prose.
-Full numbers per suite, type and format are in `results/scores.json`. The threshold sweep on the dev split is in `results/tau.json`.
+Udukratt leads on structured and corporate text and on name fairness. Bürokratt is still clearly better on news prose and government chats.
+Full v0.1 numbers per suite, type and format are in `results/scores.json`.
 
 ## Benchmarks vs Bürokratt
 
 On the same box and texts, Udukratt runs **~7× faster** than [Bürokratt Presidio-Anonymizer](https://github.com/buerokratt/Presidio-Anonymizer): 38 ms vs 256 ms median per document, 23 vs 3 docs/s. Its model is ~10 MB, against 2.2 GB.
 
-Accuracy is mixed. Udukratt catches more PII in corporate and structured text (97.5% vs 73.5%). Bürokratt is better on news (94.8% vs 66.8%), chats and varied names.
+Accuracy is mixed. Udukratt v0.2 catches more PII in corporate and structured text (97.6% vs 73.5%) and handles varied names better (99.1% vs 90.3%). Bürokratt is still better on news (94.8% vs 76.3%) and government chats (100% vs 91.5%).
 
 Details: [BENCHMARKS.md](BENCHMARKS.md). Side-by-side examples: [SHOWCASE.md](SHOWCASE.md).
 
 ## Desktop app (v0.2)
 
-There are offline builds for Windows, macOS and Linux on the [v0.2 release](https://github.com/Antononlahe/udukratt/releases/tag/v0.2). They have the same UI and model as the demo, with no network access. You can open or drop a file, redact it, and save the redacted copy. Source and build notes: [desktop/](desktop/).
+There are offline builds for Windows, macOS and Linux on the [v0.2 release](https://github.com/Antononlahe/udukratt/releases/tag/v0.2). They have the same UI and v0.2 model as the demo, with no network access. You can open or drop a file, redact it, and save the redacted copy. Source and build notes: [desktop/](desktop/).
 
 The builds are **unsigned**:
 - **Windows:** SmartScreen will warn "Windows protected your PC". Click *More info → Run anyway*.
@@ -57,7 +57,7 @@ Sizes: SIZES_PLACEHOLDER
 
 ## Limitations
 
-- Names in real prose are the weak spot: about a third of names in news text are missed.
+- Names in real prose are the weak spot: about a quarter of names in news text are still missed.
 - False alarms on technical text: bracketed or key-like words in logs (`[gateway-3]`, `WARN`), Confluence markup and CSV row ids
   are sometimes flagged. Logs average about 30 false alarms per document.
 - Non-Latin scripts other than Cyrillic (Arabic, CJK, Hindi) are rarely caught.
@@ -91,7 +91,7 @@ Riigi Teataja's robots.txt disallows automated access to court decisions, so onl
 `SYNTH_N` and `OCR_N` set corpus sizes. Doc-style data: `python data/build_docs.py --n 20000 --out work/docs_train.jsonl`.
 
 Webapp: copy `model_q4.onnx` and a `vocab.json` (the `model.vocab` of `tokenizer.json`) into `webapp/model/`, and the onnxruntime-web
-wasm files into `webapp/vendor/`, then serve the folder statically. Parity: `python webapp/test/ref.py 0.5 && node webapp/test/parity.mjs`.
+wasm files into `webapp/vendor/`, then serve the folder statically. Parity: `python webapp/test/ref.py 0.45 && node webapp/test/parity.mjs`.
 
 ## Recipe parity
 

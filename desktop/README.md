@@ -10,7 +10,7 @@ Features: drag-and-drop or Open file…, Redact, and Save redacted file…
 
 Build:
 ```
-gh release download v0.1 -p model_q4.onnx -D ../webapp/model
+gh release download v0.2 -p model_q4.onnx -D ../webapp/model
 npm ci && npx tauri build --bundles appimage
 ```
 Headless smoke test:

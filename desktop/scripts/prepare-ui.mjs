@@ -3,7 +3,7 @@ import { existsSync, cpSync, rmSync, mkdirSync, readFileSync, writeFileSync } fr
 const W = new URL("../../webapp/", import.meta.url), D = new URL("../dist/", import.meta.url);
 rmSync(D, { recursive: true, force: true }); mkdirSync(D);
 for (const f of ["app.js", "rampart.js", "style.css", "model"]) cpSync(new URL(f, W), new URL(f, D), { recursive: true });
-if (!existsSync(new URL("model/model_q4.onnx", D))) throw new Error("webapp/model/model_q4.onnx missing (download it from the v0.1 release)");
+if (!existsSync(new URL("model/model_q4.onnx", D))) throw new Error("webapp/model/model_q4.onnx missing (download it from the v0.2 release)");
 // onnxruntime-web runtime files, from this package's pinned dependency
 const ORT = new URL("../node_modules/onnxruntime-web/dist/", import.meta.url);
 mkdirSync(new URL("vendor/", D));

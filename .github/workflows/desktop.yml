@@ -30,12 +30,12 @@ jobs:
           targets: ${{ matrix.platform == 'macos-latest' && 'aarch64-apple-darwin,x86_64-apple-darwin' || '' }}
       - uses: swatinem/rust-cache@v2
         with: { workspaces: "desktop/src-tauri -> target" }
-      - name: Fetch model (v0.1 release asset) and verify checksum
+      - name: Fetch model (v0.2 release asset) and verify checksum
         shell: bash
         env: { GH_TOKEN: "${{ github.token }}" }
         run: |
-          gh release download v0.1 -p model_q4.onnx -D webapp/model
-          echo "00404c3899c98964f27346b518b04670720da12b4c82e9b08c22dc03641e0990  webapp/model/model_q4.onnx" | shasum -a 256 -c -
+          gh release download v0.2 -p model_q4.onnx -D webapp/model
+          echo "2c78581a3daeb8078afb652da7ddff1690c02e7f8c59ffc0caed36dca5fadb47  webapp/model/model_q4.onnx" | shasum -a 256 -c -
       - run: npm ci
         working-directory: desktop
       - uses: tauri-apps/tauri-action@v0
@@ -43,8 +43,8 @@ jobs:
         with:
           projectPath: desktop
           tagName: ${{ github.ref_type == 'tag' && github.ref_name || 'v0.2' }}
-          releaseName: "Udukratt ${{ github.ref_type == 'tag' && github.ref_name || 'v0.2' }} (desktop)"
-          releaseBody: "Offline desktop app (Windows, macOS universal, Linux AppImage). Unsigned builds: see README for SmartScreen / Gatekeeper notes. Experimental; do not rely on it for real redaction."
+          releaseName: "Udukratt ${{ github.ref_type == 'tag' && github.ref_name || 'v0.2' }}"
+          releaseBody: "Udukratt v0.2: improved model (pass 2, threshold 0.45) and offline desktop apps for Windows (NSIS installer), macOS (universal, unsigned) and Linux (AppImage). Model files (model_q4.onnx, tokenizer.json, vocab.txt, config.json) are attached. Builds are unsigned: see the README for SmartScreen / Gatekeeper notes. Experimental; do not rely on it as the only safeguard for real redaction. Benchmarks: BENCHMARKS.md."
           releaseDraft: false
           prerelease: false
           args: ${{ matrix.args }}
