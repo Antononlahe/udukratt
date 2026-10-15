@@ -53,7 +53,16 @@ The builds are **unsigned**:
 - **macOS:** Gatekeeper will say the app "can't be opened" or "is damaged". Right-click → *Open*, or run `xattr -dr com.apple.quarantine /Applications/Udukratt.app`.
 - **Linux:** `chmod +x Udukratt_*.AppImage`. If FUSE is missing, run it with `--appimage-extract-and-run`.
 
-Sizes: SIZES_PLACEHOLDER
+Downloads and sizes:
+
+| Platform | File | Size |
+|---|---|---|
+| Windows 10/11 x64 | `Udukratt_0.2.0_x64-setup.exe` (NSIS installer) | 14.2 MB |
+| macOS (Apple silicon and Intel) | `Udukratt_0.2.0_universal.dmg` | 25.4 MB |
+| macOS app bundle | `Udukratt_universal.app.tar.gz` | 25.4 MB |
+| Linux x86_64 | `Udukratt_0.2.0_amd64.AppImage` | 87.6 MB |
+
+The Windows installer uses the system WebView2 runtime, which ships with Windows 10/11. On machines without it, the installer fetches it once during setup. After that, the app itself never uses the network.
 
 ## Limitations
 
